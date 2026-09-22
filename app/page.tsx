@@ -1,33 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
+import { getHomeProjects } from "@/content/projects";
 import profilePhoto from "@/public/images/profile.jpg";
 
 // Illustrative content to replace with actual projects and writing.
-const projects = [
-  {
-    category: "REAL-WORLD ROBOTICS",
-    title: "실환경 로봇 실험 시스템 구축",
-    agency: "연구실 자체 프로젝트",
-    description:
-      "실제 로봇 실험을 위한 로봇 시스템 통합, HIL 환경 구축, F/T 센서 기반 실시간 모니터링 및 멀티모달 데이터 수집 시스템을 개발했습니다.",
-  },
-  {
-    category: "VLA · Skill Representation",
-    title: "오픈도메인 멀티모달 자기주도 인공지능 기술 개발",
-    agency: "정보통신기획평가원",
-    description:
-      "다양한 실제 로봇 작업에 대응하기 위한 멀티모달 기반 open-domain robot learning 및 skill-level VLA 시스템을 연구하고 있습니다.",
-  },
-  {
-    category: "PHYSICAL AI",
-    title: "이기종 협업-피지컬AI SDF 특화 기반모델 연구개발",
-    agency: "과학기술정보통신부",
-    description:
-      "Physical AI를 위한 로봇 학습 시스템과 simulation–real-world 환경을 구축하고 관련 학습 방법을 연구합니다.",
-  },
-];
-
 const publications = [
   {
     title:
@@ -88,7 +66,7 @@ const education = [
     institution: "성균관대학교",
     lang: "ko",
     department: "소프트웨어학과",
-    detail: "졸업 예정",
+    detail: "GPA 4.30 · 조기졸업 예정",
   },
   {
     period: "2022.03 – 2025.09",
@@ -105,6 +83,8 @@ const education = [
 ];
 
 export default function Home() {
+  const projects = getHomeProjects();
+
   return (
     <main className="site-container">
       <section
@@ -181,53 +161,7 @@ export default function Home() {
         />
         <div className="grid auto-rows-fr gap-5 md:grid-cols-3">
           {projects.map((project) => (
-            <article
-              key={project.title}
-              className="flex h-full min-w-0 flex-col overflow-hidden rounded-sm border border-border bg-white"
-            >
-              <div
-                aria-hidden="true"
-                className="flex aspect-video shrink-0 items-center justify-center border-b border-border bg-surface text-muted"
-              >
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <circle cx="8.5" cy="8.5" r="1.5" />
-                  <path d="m3 17 5-5 4 4 4-6 5 7" />
-                </svg>
-              </div>
-              <div className="flex flex-1 flex-col p-6 sm:p-7">
-                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-accent">
-                  {project.category}
-                </p>
-                <h3 className="mt-5 text-xl font-medium leading-snug tracking-tight">
-                  {project.title}
-                </h3>
-                <p
-                  lang="ko"
-                  className="mt-1 text-xs leading-5 font-normal text-muted"
-                >
-                  {project.agency}
-                </p>
-                <p
-                  lang="ko"
-                  className="mt-3 mb-7 text-sm leading-7 break-keep text-foreground"
-                >
-                  {project.description}
-                </p>
-                <Link href="/projects" className="text-link mt-auto">
-                  View Project
-                  <span className="sr-only">: {project.title}</span>
-                  <span aria-hidden="true">→</span>
-                </Link>
-              </div>
-            </article>
+            <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
       </section>
