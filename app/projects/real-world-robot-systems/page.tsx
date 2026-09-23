@@ -9,6 +9,8 @@ import headCameraPhoto from "@/public/images/projects/real-world-robot-systems/h
 import mainPhoto from "@/public/images/projects/real-world-robot-systems/main.jpg";
 import platformPhoto from "@/public/images/projects/real-world-robot-systems/overview.jpg";
 import sensorPhoto from "@/public/images/projects/real-world-robot-systems/sensor.jpg";
+import dashboardVisualizerImage from "@/public/images/projects/real-world-robot-systems/visualizer.png";
+import stlVisualizerImage from "@/public/images/projects/real-world-robot-systems/visualizer_stl.png";
 import wristCameraPhoto from "@/public/images/projects/real-world-robot-systems/wrist_cam.jpg";
 
 const subtitle =
@@ -18,7 +20,7 @@ const platforms = [
   {
     title: "Robot Platform",
     caption:
-      "RB3-730 협동 로봇 2대를 사용해 실제 로봇 실험을 위한 플랫폼을 구성했습니다.",
+      "RB3-730 협동 로봇 2대를 사용해 실제 로봇 실험을 위한 플랫폼을 구성하였습니다. 두 로봇의 제어 인터페이스를 통합하는 별도의 wrapper를 구현하여, 양팔을 하나의 공통 인터페이스에서 관리·제어할 수 있는 dual-arm environment를 구축하였습니다.",
     images: [
       {
         src: platformPhoto,
@@ -29,7 +31,7 @@ const platforms = [
   {
     title: "Grippers & Sensors",
     caption:
-      "PGC-50-35 그리퍼와 RFT64-SB01 F/T 센서를 연동해 사용했습니다.",
+      "PGC-50-35 그리퍼와 RFT64-SB01 F/T 센서를 연동해 사용하였으며, F/T 센서 데이터는 100 Hz 주기로 수집하였습니다.",
     images: [
       {
         src: gripperPhoto,
@@ -44,7 +46,7 @@ const platforms = [
   {
     title: "Cameras & Hardware",
     caption:
-      "Head camera는 Intel RealSense D455, 손목 카메라는 Intel RealSense D405를 사용했습니다. Teleoperator로는 3Dconnexion의 SpaceMouse Compact를 사용했습니다.",
+      "상단 카메라는 Intel RealSense D455, 손목 카메라는 Intel RealSense D405를 사용했습니다. Teleoperator로는 3Dconnexion의 SpaceMouse Compact를 사용했습니다.",
     images: [
       {
         src: headCameraPhoto,
@@ -221,16 +223,164 @@ export default function RealWorldRobotSystemsPage() {
             id="monitoring-heading"
             title="Real-Time F/T Monitoring"
           />
-          <p className="text-sm leading-7 break-keep sm:text-base sm:leading-8">
-            F/T 센서 연동과 실시간 force/torque 시각화, 로깅 및 모니터링 구성을
-            정리합니다. 실험 중 센서 신호를 확인하는 화면과 데이터 기록 흐름을
-            추가할 예정입니다.
-          </p>
-          <div className="mt-6">
-            <MediaPlaceholder
-              label="실시간 F/T 모니터링 · 스크린샷 준비 중"
-              className="aspect-video sm:aspect-[5/2]"
-            />
+          <div className="grid gap-6 md:grid-cols-2">
+            <video
+              controls
+              playsInline
+              preload="metadata"
+              aria-label="초기 STL 기반 F/T 공간 시각화 시연 영상"
+              className="aspect-video w-full overflow-hidden rounded-md border border-border bg-black object-contain"
+            >
+              <source
+                src="/videos/projects/real-world-robot-systems/visualizer_stl.mp4"
+                type="video/mp4"
+              />
+              <a href="/videos/projects/real-world-robot-systems/visualizer_stl.mp4">
+                STL 기반 시각화 영상 파일 열기
+              </a>
+            </video>
+            <video
+              controls
+              playsInline
+              preload="metadata"
+              aria-label="최종 time-series F/T 대시보드 시연 영상"
+              className="aspect-video w-full overflow-hidden rounded-md border border-border bg-black object-contain"
+            >
+              <source
+                src="/videos/projects/real-world-robot-systems/visualizer_new.mp4"
+                type="video/mp4"
+              />
+              <a href="/videos/projects/real-world-robot-systems/visualizer_new.mp4">
+                F/T 대시보드 영상 파일 열기
+              </a>
+            </video>
+            <div className="grid aspect-video grid-cols-2 overflow-hidden rounded-md border border-border bg-black">
+              <div className="relative min-w-0 overflow-hidden">
+                <Image
+                  src={stlVisualizerImage}
+                  alt="카메라 영상과 양팔 gripper의 STL 기반 공간 시각화를 함께 표시한 초기 모니터링 화면"
+                  fill
+                  sizes="(min-width: 1200px) 274px, (min-width: 768px) 25vw, 50vw"
+                  className="object-contain object-center"
+                />
+              </div>
+              <div className="relative min-w-0 overflow-hidden border-l border-border">
+                <Image
+                  src={dashboardVisualizerImage}
+                  alt="카메라 영상 아래 좌우 force와 torque의 시계열 그래프를 표시한 최종 모니터링 화면"
+                  fill
+                  sizes="(min-width: 1200px) 274px, (min-width: 768px) 25vw, 50vw"
+                  className="object-contain object-center"
+                />
+              </div>
+            </div>
+            <video
+              controls
+              playsInline
+              preload="metadata"
+              aria-label="추가 time-series F/T 대시보드 시연 영상"
+              className="aspect-video w-full overflow-hidden rounded-md border border-border bg-black object-contain"
+            >
+              <source
+                src="/videos/projects/real-world-robot-systems/visualizer_new_usb.mp4"
+                type="video/mp4"
+              />
+              <a href="/videos/projects/real-world-robot-systems/visualizer_new_usb.mp4">
+                추가 F/T 대시보드 영상 파일 열기
+              </a>
+            </video>
+          </div>
+
+          <div className="mt-7 space-y-8 text-sm leading-7 break-keep sm:text-base sm:leading-8">
+            <p>
+              3Dconnexion SpaceMouse Compact를 이용한 teleoperation은
+              end-effector의 위치와 자세를 직관적으로 조작할 수 있지만, 별도의
+              haptic feedback을 제공하지 않기 때문에 작업자가 로봇과 환경 사이에
+              발생하는 접촉력을 직접 인지하기 어렵습니다. 특히 contact-rich
+              manipulation에서는 카메라 영상만으로 현재 end-effector에 어느 정도의
+              힘과 토크가 가해지고 있는지 판단하기 어렵고, 순간적으로 큰 접촉력이
+              발생하더라도 이를 즉각적으로 인지하지 못할 수 있습니다. 이를 보완하기
+              위해 양팔 end-effector에서 측정되는 6-axis F/T 신호를 teleoperation
+              화면과 함께 실시간으로 확인할 수 있는 모니터링 시스템을
+              구축하였습니다.
+            </p>
+
+            <div className="space-y-4">
+              <h3
+                lang="en"
+                className="text-base leading-7 font-bold sm:text-lg"
+              >
+                Initial Design — STL-based Spatial Visualization
+              </h3>
+              <p>
+                초기에는 gripper의 STL model을 기반으로 한 3D spatial visualization을
+                구현하였습니다. 로봇의 TCP pose를 이용해 실제 end-effector의 위치와
+                자세를 3D scene에 반영하고, F/T sensor에서 측정한 힘과 토크를 벡터
+                형태로 함께 표시하였습니다. 또한 world-frame XYZ 축을 추가하여
+                gripper의 현재 자세와 외력 방향의 관계를 직관적으로 확인할 수
+                있도록 구성했습니다. 양팔에 대해 각각 visualization을 생성한 뒤
+                카메라 이미지와 하나의 화면으로 결합하여, 실제 작업 장면과
+                end-effector에 가해지는 외력을 동시에 모니터링할 수 있도록
+                하였습니다.
+              </p>
+              <p>
+                해당 방식은 특히 gripper의 자세와 force direction을 공간적으로
+                함께 확인할 수 있다는 점에서 유용했습니다. 하지만 실제
+                teleoperation 과정에서는 몇 가지 한계가 있었습니다. Force는 직선
+                벡터로 표현했을 때 비교적 직관적이지만, torque는 회전축과 회전 경향을
+                나타내는 물리량임에도 동일한 화살표 형태로 표현되어 즉각적인 해석이
+                어려웠습니다. 또한 매 순간의 F/T vector만 보여주기 때문에 순간적인
+                peak, 지속적인 contact load, vibration 등 시간에 따른 변화 양상을
+                확인하기 어려웠고, 작업자가 특정 순간을 놓치면 직전에 발생한 큰
+                contact event를 다시 파악하기도 어려웠습니다. 이러한 한계를
+                바탕으로 이후에는 3D spatial visualization 대신 축별 F/T 값과 최근
+                변화 추이를 함께 확인할 수 있는 대시보드 형태로 모니터링
+                인터페이스를 재설계하였습니다.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h3
+                lang="en"
+                className="text-base leading-7 font-bold sm:text-lg"
+              >
+                Final Design — Time-Series F/T Dashboard
+              </h3>
+              <p>
+                이러한 한계를 바탕으로 최종 구현에서는 3D STL visualization을
+                제거하고, 좌/우 end-effector의 force와 torque를 time-series 형태로
+                직접 모니터링하는 대시보드 형태로 변경하였습니다. 각 arm에 대해 Fx,
+                Fy, Fz와 Tx, Ty, Tz를 독립적으로 표시하고, 힘과 토크를 별도의 행으로
+                분리하였습니다. 실제 카메라 이미지를 화면 상단에 유지한 채 그 아래에
+                좌/우 힘 패널과 토크 패널을 배치하여, 작업 장면과 F/T state를 하나의
+                화면에서 동시에 확인할 수 있도록 구성했습니다.
+              </p>
+              <p>
+                각 패널은 또한 전체 vector norm을 함께 제공하도록 구성하였습니다.
+                따라서 작업자는 최근 신호의 변화 추이를 그래프로 확인하는 동시에,
+                현재 Fx/Fy/Fz 또는 Tx/Ty/Tz의 정확한 값을 바로 읽을 수 있습니다.
+                X/Y/Z 축에는 일관된 색상을 적용하여 여러 패널 간에도 동일한 축을
+                빠르게 추적할 수 있도록 하였습니다.
+              </p>
+              <p>
+                Time-series 그래프는 전체 history를 별도 자료구조에 계속 누적하는
+                방식 대신 고정 크기의 image buffer를 scrolling하는 방식으로
+                구현하였습니다. 매 업데이트마다 기존 trace를 한 픽셀 씩 왼쪽으로
+                이동시키고, 가장 오른쪽 열에 이전 샘플과 현재 샘플을 연결하는 새로운
+                line segment만 추가합니다. 이 방식은 모니터링 시간이 길어져도
+                visualization에 사용하는 메모리와 화면 크기가 증가하지 않으며, 최근
+                F/T history만 지속적으로 유지할 수 있다는 장점이 있습니다.
+              </p>
+              <p>
+                Visualization이 teleoperation 및 robot control의 timing에 영향을
+                주지 않는 것을 중요한 설계 조건으로 유지하여 control loop에서는
+                가장 최신 visualization frame 하나만 queue에 전달하고, OpenCV
+                window rendering은 별도의 daemon thread에서 처리합니다. Queue가
+                이미 차 있는 경우에는 기존 프레임을 제거하고 새로운 프레임으로
+                교체하므로, 랜더링 속도가 일시적으로 느려져도 과거 프레임이 쌓이면서
+                display latency가 증가하지 않습니다.
+              </p>
+            </div>
           </div>
         </section>
 
