@@ -30,7 +30,11 @@ export function ProjectCard({
               alt={project.coverImage.alt}
               fill
               sizes="(min-width: 1200px) 360px, (min-width: 768px) 33vw, 100vw"
-              className="object-cover object-center"
+              className={
+                project.coverImage.fit === "contain"
+                  ? "bg-white object-contain object-center"
+                  : "object-cover object-center"
+              }
             />
           ) : (
             <svg

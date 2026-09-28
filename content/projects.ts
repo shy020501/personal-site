@@ -8,6 +8,7 @@ export type Project = {
   coverImage?: {
     src: string;
     alt: string;
+    fit?: "cover" | "contain";
   };
   order: number;
   visible: boolean;
@@ -45,6 +46,11 @@ export const projects: readonly Project[] = [
     description:
       "다양한 실제 로봇 작업에 대응하기 위한 멀티모달 기반 open-domain robot learning 및 skill-level VLA 시스템을 연구하고 있습니다.",
     detailHref: "/projects/open-domain",
+    coverImage: {
+      src: "/images/projects/open-domain/model_overview.png",
+      alt: "Skill Tokens와 멀티모달 입력을 이용한 Flow Transformer 기반 로봇 행동 생성 모델 구조",
+      fit: "contain",
+    },
     order: 2,
     visible: true,
     showOnHome: true,
@@ -58,6 +64,10 @@ export const projects: readonly Project[] = [
     description:
       "Physical AI를 위한 로봇 학습 시스템과 simulation–real-world 환경을 구축하고 관련 학습 방법을 연구합니다.",
     detailHref: "/projects/physical-ai",
+    coverImage: {
+      src: "/images/projects/physical-ai/tesollo.jpg",
+      alt: "TESOLLO의 다관절 로봇 손",
+    },
     order: 3,
     visible: true,
     showOnHome: true,
@@ -71,6 +81,10 @@ export const projects: readonly Project[] = [
     description:
       "강화학습 기반의 드론 이상 탐지와 이상 행위 대응 기술을 다루는 연구 프로젝트입니다.",
     detailHref: "/projects/drone-anomaly-detection",
+    coverImage: {
+      src: "/images/projects/drone-anomaly-detection/drone.png",
+      alt: "도로 위를 비행하는 드론",
+    },
     order: 4,
     visible: true,
     showOnHome: false,

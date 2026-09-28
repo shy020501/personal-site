@@ -25,7 +25,7 @@ const publications: Publication[] = [
     authors: [
       { name: "Seunghyo Yun" },
       { name: "Seungjun Oh" },
-      { name: "Yusung Kim" },
+      { name: "Yusung Kim", marker: "†" },
     ],
     description:
       "Diffusion model의 reward fine-tuning에서 발생하는 timestep-wise optimization imbalance를 분석하고, 이를 완화하기 위한 gradient-balanced LoRA 구조를 제안합니다.",
@@ -99,6 +99,7 @@ const education = [
     period: "2018.08 – 2021.05",
     institution: "The British International School Shanghai, Puxi",
     lang: "en",
+    detail: "중국, 상하이",
   },
 ];
 
