@@ -35,16 +35,21 @@ export function SiteHeader() {
         </Link>
         <nav aria-label="Main navigation">
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm sm:gap-x-7">
-            {navigation.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="inline-flex min-h-11 items-center text-muted transition-colors duration-150 hover:text-accent motion-reduce:transition-none"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {navigation.map((item) => {
+              // Native anchors scroll again even when the hash is unchanged.
+              const NavLink = item.href === "/#about" ? "a" : Link;
+
+              return (
+                <li key={item.href}>
+                  <NavLink
+                    href={item.href}
+                    className="inline-flex min-h-11 items-center text-muted transition-colors duration-150 hover:text-accent motion-reduce:transition-none"
+                  >
+                    {item.label}
+                  </NavLink>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>

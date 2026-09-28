@@ -117,25 +117,26 @@ const activities = [
 
 const scholarships = [
   {
-    period: "석사전학기",
+    period: "석사 전학기",
     title: "新대학원우수학생 장학금 TYPE 1",
     detail: "전액장학금",
   },
   {
     period: "2025년-1학기",
     title: "학생성공-학석연계장학금",
+    detail: "전액장학금",
   },
   {
     period: "2024년-2학기",
-    title: "학생성공-리더장학금",
+    title: "학생성공-리더장학금(70%)",
   },
   {
     period: "2024년-1학기",
-    title: "학생성공-리더장학금",
+    title: "학생성공-리더장학금(70%)",
   },
   {
     period: "2023년-1학기",
-    title: "성적우수장학금",
+    title: "성적우수장학금(우수)",
   },
 ];
 
