@@ -224,6 +224,26 @@ export default function RealWorldRobotSystemsPage() {
             title="Real-Time F/T Monitoring"
           />
           <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid aspect-video grid-cols-2 overflow-hidden rounded-md border border-border bg-black">
+              <div className="relative min-w-0 overflow-hidden">
+                <Image
+                  src={stlVisualizerImage}
+                  alt="카메라 영상과 양팔 gripper의 STL 기반 공간 시각화를 함께 표시한 초기 모니터링 화면"
+                  fill
+                  sizes="(min-width: 1200px) 274px, (min-width: 768px) 25vw, 50vw"
+                  className="object-contain object-center"
+                />
+              </div>
+              <div className="relative min-w-0 overflow-hidden border-l border-border">
+                <Image
+                  src={dashboardVisualizerImage}
+                  alt="카메라 영상 아래 좌우 force와 torque의 시계열 그래프를 표시한 최종 모니터링 화면"
+                  fill
+                  sizes="(min-width: 1200px) 274px, (min-width: 768px) 25vw, 50vw"
+                  className="object-contain object-center"
+                />
+              </div>
+            </div>
             <video
               controls
               playsInline
@@ -254,26 +274,6 @@ export default function RealWorldRobotSystemsPage() {
                 F/T 대시보드 영상 파일 열기
               </a>
             </video>
-            <div className="grid aspect-video grid-cols-2 overflow-hidden rounded-md border border-border bg-black">
-              <div className="relative min-w-0 overflow-hidden">
-                <Image
-                  src={stlVisualizerImage}
-                  alt="카메라 영상과 양팔 gripper의 STL 기반 공간 시각화를 함께 표시한 초기 모니터링 화면"
-                  fill
-                  sizes="(min-width: 1200px) 274px, (min-width: 768px) 25vw, 50vw"
-                  className="object-contain object-center"
-                />
-              </div>
-              <div className="relative min-w-0 overflow-hidden border-l border-border">
-                <Image
-                  src={dashboardVisualizerImage}
-                  alt="카메라 영상 아래 좌우 force와 torque의 시계열 그래프를 표시한 최종 모니터링 화면"
-                  fill
-                  sizes="(min-width: 1200px) 274px, (min-width: 768px) 25vw, 50vw"
-                  className="object-contain object-center"
-                />
-              </div>
-            </div>
             <video
               controls
               playsInline
@@ -324,10 +324,10 @@ export default function RealWorldRobotSystemsPage() {
                 하였습니다.
               </p>
               <p>
-                해당 방식은 특히 gripper의 자세와 force direction을 공간적으로
+                해당 방식은 특히 gripper의 자세와 힘 방향을 공간적으로
                 함께 확인할 수 있다는 점에서 유용했습니다. 하지만 실제
-                teleoperation 과정에서는 몇 가지 한계가 있었습니다. Force는 직선
-                벡터로 표현했을 때 비교적 직관적이지만, torque는 회전축과 회전 경향을
+                teleoperation 과정에서는 몇 가지 한계가 있었습니다. 힘은 직선
+                벡터로 표현했을 때 비교적 직관적이지만, 토크는 회전축과 회전 경향을
                 나타내는 물리량임에도 동일한 화살표 형태로 표현되어 즉각적인 해석이
                 어려웠습니다. 또한 매 순간의 F/T vector만 보여주기 때문에 순간적인
                 peak, 지속적인 contact load, vibration 등 시간에 따른 변화 양상을
@@ -348,7 +348,7 @@ export default function RealWorldRobotSystemsPage() {
               </h3>
               <p>
                 이러한 한계를 바탕으로 최종 구현에서는 3D STL visualization을
-                제거하고, 좌/우 end-effector의 force와 torque를 time-series 형태로
+                제거하고, 좌/우 end-effector의 힘과 토크를 time-series 형태로
                 직접 모니터링하는 대시보드 형태로 변경하였습니다. 각 arm에 대해 Fx,
                 Fy, Fz와 Tx, Ty, Tz를 독립적으로 표시하고, 힘과 토크를 별도의 행으로
                 분리하였습니다. 실제 카메라 이미지를 화면 상단에 유지한 채 그 아래에
@@ -372,7 +372,7 @@ export default function RealWorldRobotSystemsPage() {
                 F/T history만 지속적으로 유지할 수 있다는 장점이 있습니다.
               </p>
               <p>
-                Visualization이 teleoperation 및 robot control의 timing에 영향을
+                Visualization이 teleoperation의 타이밍에 영향을
                 주지 않는 것을 중요한 설계 조건으로 유지하여 control loop에서는
                 가장 최신 visualization frame 하나만 queue에 전달하고, OpenCV
                 window rendering은 별도의 daemon thread에서 처리합니다. Queue가

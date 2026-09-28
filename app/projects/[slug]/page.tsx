@@ -7,7 +7,11 @@ export const dynamicParams = false;
 
 export function generateStaticParams() {
   return getVisibleProjects()
-    .filter((project) => project.slug !== "real-world-robot-systems")
+    .filter(
+      (project) =>
+        project.slug !== "real-world-robot-systems" &&
+        project.slug !== "open-domain",
+    )
     .map((project) => ({ slug: project.slug }));
 }
 

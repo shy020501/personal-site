@@ -5,6 +5,10 @@ export type Project = {
   organization: string;
   description: string;
   detailHref?: string;
+  coverImage?: {
+    src: string;
+    alt: string;
+  };
   order: number;
   visible: boolean;
   showOnHome: boolean;
@@ -24,19 +28,23 @@ export const projects: readonly Project[] = [
     description:
       "실제 로봇 실험을 위한 로봇 시스템 통합, HIL 환경 구축, F/T 센서 기반 실시간 모니터링 및 멀티모달 데이터 수집 시스템을 개발했습니다.",
     detailHref: "/projects/real-world-robot-systems",
+    coverImage: {
+      src: "/images/projects/real-world-robot-systems/overview.jpg",
+      alt: "양팔 로봇과 카메라, 작업대로 구성한 실환경 로봇 실험 시스템",
+    },
     order: 1,
     visible: true,
     showOnHome: true,
     homeOrder: 1,
   },
   {
-    slug: "open-domain-vla",
+    slug: "open-domain",
     title: "오픈도메인 멀티모달 자기주도 인공지능 기술 개발",
     category: "VLA · SKILL REPRESENTATION",
     organization: "정보통신기획평가원",
     description:
       "다양한 실제 로봇 작업에 대응하기 위한 멀티모달 기반 open-domain robot learning 및 skill-level VLA 시스템을 연구하고 있습니다.",
-    detailHref: "/projects/open-domain-vla",
+    detailHref: "/projects/open-domain",
     order: 2,
     visible: true,
     showOnHome: true,

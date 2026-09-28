@@ -5,26 +5,46 @@ import { SectionHeading } from "@/components/section-heading";
 import { getHomeProjects } from "@/content/projects";
 import profilePhoto from "@/public/images/profile.jpg";
 
+type Publication = {
+  title: string;
+  status: string;
+  year: string;
+  authors: { name: string; marker?: "*" | "†" }[];
+  description: string;
+  paperHref?: string;
+  githubHref?: string;
+};
+
 // Illustrative content to replace with actual projects and writing.
-const publications = [
+const publications: Publication[] = [
   {
     title:
       "Gradient-Balanced Timestep-Partitioned LoRA for Reward Fine-Tuning of Diffusion Models",
     status: "Under Review · ICLR 2027",
     year: "2026",
-    authors: ["Seunghyo Yun", "Seungjun Oh", "Yusung Kim"],
+    authors: [
+      { name: "Seunghyo Yun" },
+      { name: "Seungjun Oh" },
+      { name: "Yusung Kim" },
+    ],
     description:
       "Diffusion model의 reward fine-tuning에서 발생하는 timestep-wise optimization imbalance를 분석하고, 이를 완화하기 위한 gradient-balanced LoRA 구조를 제안합니다.",
-    githubHref: "https://github.com/shy020501",
+    paperHref: "/pdf/GTP_LoRA.pdf",
+    // githubHref: "https://github.com/shy020501",
   },
   {
     title:
       "Generalized Concept Unlearning Guided by AI Feedback for Text-to-Image Diffusion Models",
     status: "Preprint",
     year: "2025",
-    authors: ["Taehoon Lee", "Seunghyo Yun", "Yusung Kim"],
+    authors: [
+      { name: "Taehoon Lee", marker: "*" },
+      { name: "Seunghyo Yun", marker: "*" },
+      { name: "Yusung Kim", marker: "†" },
+    ],
     description:
-      "AI feedback을 활용하여 text-to-image diffusion model에서 다양한 concept에 일반화 가능한 unlearning 방법을 연구했습니다.",
+      "VLM feedback을 활용하여 text-to-image diffusion model에서 다양한 concept에 일반화 가능한 unlearning 방법을 제안합니다.",
+    paperHref: "/pdf/Generalized_Concept_Unlearning.pdf",
   },
 ];
 
@@ -81,6 +101,57 @@ const education = [
     lang: "en",
   },
 ];
+
+const activities = [
+  {
+    period: "2024.02 – 2024.11",
+    organization: "소프트웨어융합대학 학생회",
+    role: "부학생회장",
+  },
+  {
+    period: "2022.02 – 2024.02",
+    organization: "소프트웨어융합대학 학생회",
+    role: "부원",
+  },
+];
+
+const scholarships = [
+  {
+    period: "석사전학기",
+    title: "新대학원우수학생 장학금 TYPE 1",
+    detail: "전액장학금",
+  },
+  {
+    period: "2025년-1학기",
+    title: "학생성공-학석연계장학금",
+  },
+  {
+    period: "2024년-2학기",
+    title: "학생성공-리더장학금",
+  },
+  {
+    period: "2024년-1학기",
+    title: "학생성공-리더장학금",
+  },
+  {
+    period: "2023년-1학기",
+    title: "성적우수장학금",
+  },
+];
+
+function GitHubIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="h-4 w-4 shrink-0"
+    >
+      <path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.043-1.61-4.043-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.838 1.237 1.838 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.605-2.665-.303-5.467-1.334-5.467-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.52 11.52 0 0 1 12 5.6c1.02.005 2.045.138 3.003.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.652.243 2.873.119 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.625-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.898-.015 3.293 0 .322.216.694.825.576C20.565 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+    </svg>
+  );
+}
 
 export default function Home() {
   const projects = getHomeProjects();
@@ -191,14 +262,17 @@ export default function Home() {
                   </h3>
                   <p className="mt-2 text-sm leading-6 text-muted">
                     {publication.authors.map((author, index) => (
-                      <span key={author}>
+                      <span key={author.name}>
                         {index > 0 && ", "}
-                        {author === "Seunghyo Yun" ? (
+                        {author.name === "Seunghyo Yun" ? (
                           <strong className="font-bold text-foreground">
-                            {author}
+                            {author.name}
                           </strong>
                         ) : (
-                          author
+                          author.name
+                        )}
+                        {author.marker && (
+                          <sup className="ml-0.5">{author.marker}</sup>
                         )}
                       </span>
                     ))}
@@ -213,32 +287,47 @@ export default function Home() {
                     {publication.description}
                   </p>
                   <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-1">
-                    <Link href="/publications" className="text-link">
-                      View Publication
-                      <span className="sr-only">: {publication.title}</span>
-                      <span aria-hidden="true">→</span>
-                    </Link>
                     <a
-                      href="#"
+                      href={publication.paperHref ?? "#"}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-disabled="true"
-                      tabIndex={-1}
-                      title="Paper link coming soon"
-                      className="text-link pointer-events-none font-normal text-muted"
+                      aria-disabled={publication.paperHref ? undefined : true}
+                      tabIndex={publication.paperHref ? undefined : -1}
+                      title={
+                        publication.paperHref
+                          ? undefined
+                          : "Paper link coming soon"
+                      }
+                      className={`inline-flex min-h-9 items-center gap-2 rounded-sm border border-accent bg-accent px-4 py-1.5 text-sm font-normal text-white transition-colors duration-150 motion-reduce:transition-none${
+                        publication.paperHref
+                          ? " hover:border-[#10263e] hover:bg-[#10263e]"
+                          : " pointer-events-none opacity-60"
+                      }`}
                     >
-                      Paper <span aria-hidden="true">↗</span>
-                      <span className="sr-only">(coming soon)</span>
+                      Paper
+                      {!publication.paperHref && (
+                        <span className="sr-only">(coming soon)</span>
+                      )}
                     </a>
-                    {publication.githubHref && (
+                    {publication.githubHref ? (
                       <a
                         href={publication.githubHref}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-link font-normal"
                       >
+                        <GitHubIcon />
                         GitHub <span aria-hidden="true">↗</span>
                       </a>
+                    ) : (
+                      <span
+                        className="inline-flex items-center gap-2 py-2 text-sm font-normal text-muted"
+                        title="GitHub link coming soon"
+                      >
+                        <GitHubIcon />
+                        GitHub <span aria-hidden="true">↗</span>
+                        <span className="sr-only">(coming soon)</span>
+                      </span>
                     )}
                   </div>
                 </div>
@@ -289,98 +378,168 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="grid gap-12 border-b border-border py-14 sm:py-16 lg:grid-cols-2 lg:gap-16">
-        <section aria-labelledby="experience-heading">
-          <SectionHeading id="experience-heading" title="Experience" />
-          <ol className="ml-1 border-l border-border">
-            {experience.map((entry) => (
-              <li
-                key={entry.period}
-                className="relative grid gap-2 pb-7 pl-6 last:pb-0 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-5"
-              >
-                <span
-                  aria-hidden="true"
-                  className="absolute top-2 -left-[4.5px] size-2 rounded-full bg-accent"
-                />
-                <p className="font-mono text-sm leading-6 whitespace-nowrap text-foreground">
-                  {entry.period}
-                </p>
-                <div className="min-w-0">
-                  <h3 className="text-base leading-6 font-semibold">
-                    <a
-                      href={entry.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-accent underline decoration-accent/30 underline-offset-4 transition-colors duration-150 hover:decoration-accent motion-reduce:transition-none"
-                    >
-                      {entry.organization}
-                    </a>
-                  </h3>
-                  <p lang="ko" className="mt-1 text-sm leading-6 text-muted">
-                    {entry.role}
-                  </p>
-                  <p className="mt-1 text-xs leading-5 text-muted">
-                    {entry.affiliation}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <section aria-labelledby="education-heading">
-          <SectionHeading id="education-heading" title="Education" />
-          <ol className="divide-y divide-border">
-            {education.map((entry) => (
-              <li
-                key={entry.period}
-                lang={entry.lang}
-                className="grid gap-2 py-5 first:pt-0 last:pb-0 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-5"
-              >
-                <p className="font-mono text-sm leading-6 whitespace-nowrap text-foreground">
-                  {entry.period}
-                </p>
-                <div className="min-w-0">
-                  <h3 className="text-base leading-6 font-semibold">
-                    {entry.institution}
-                  </h3>
-                  {entry.department && (
-                    <p className="mt-1 text-sm leading-6 text-muted">
-                      {entry.department}
-                    </p>
-                  )}
-                  {entry.detail && (
-                    <p className="mt-1 text-xs leading-5 text-muted">
-                      {entry.detail}
-                    </p>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
-      </div>
-
       <section
+        id="about"
         aria-labelledby="about-heading"
-        className="grid gap-5 py-14 sm:py-16 md:grid-cols-[240px_1fr] md:gap-12"
+        className="py-14 sm:py-16"
       >
-        <h2
-          id="about-heading"
-          className="text-2xl font-semibold tracking-tight sm:text-[1.75rem]"
-        >
-          About
-        </h2>
-        <div>
-          <p className="max-w-2xl text-base leading-8 text-muted">
-            I’m Seunghyo, a researcher interested in the meeting point of
-            artificial intelligence and the physical world. I’m drawn to
-            understanding how things work, building useful systems, and sharing
-            what I learn along the way.
-          </p>
-          <Link href="/about" className="text-link mt-4">
-            More about me <span aria-hidden="true">→</span>
-          </Link>
+        <SectionHeading id="about-heading" title="About" />
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-x-16">
+          <section aria-labelledby="experience-heading" className="min-w-0">
+            <h3
+              id="experience-heading"
+              className="mb-5 text-lg font-semibold tracking-tight sm:text-xl"
+            >
+              Experience
+            </h3>
+            <ol className="ml-1 border-l border-border">
+              {experience.map((entry) => (
+                <li
+                  key={entry.period}
+                  className="relative grid gap-2 pb-7 pl-6 last:pb-0 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-5"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-2 -left-[4.5px] size-2 rounded-full bg-accent"
+                  />
+                  <p className="font-mono text-sm leading-6 whitespace-nowrap text-foreground">
+                    {entry.period}
+                  </p>
+                  <div className="min-w-0">
+                    <h4 className="text-base leading-6 font-semibold">
+                      <a
+                        href={entry.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-accent underline decoration-accent/30 underline-offset-4 transition-colors duration-150 hover:decoration-accent motion-reduce:transition-none"
+                      >
+                        {entry.organization}
+                      </a>
+                    </h4>
+                    <p lang="ko" className="mt-1 text-sm leading-6 text-muted">
+                      {entry.role}
+                    </p>
+                    <p className="mt-1 text-xs leading-5 text-muted">
+                      {entry.affiliation}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section aria-labelledby="education-heading" className="min-w-0">
+            <h3
+              id="education-heading"
+              className="mb-5 text-lg font-semibold tracking-tight sm:text-xl"
+            >
+              Education
+            </h3>
+            <ol className="ml-1 border-l border-border">
+              {education.map((entry) => (
+                <li
+                  key={entry.period}
+                  lang={entry.lang}
+                  className="relative grid gap-2 pb-7 pl-6 last:pb-0 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-5"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-2 -left-[4.5px] size-2 rounded-full bg-accent"
+                  />
+                  <p className="font-mono text-sm leading-6 whitespace-nowrap text-foreground">
+                    {entry.period}
+                  </p>
+                  <div className="min-w-0">
+                    <h4 className="text-base leading-6 font-semibold">
+                      {entry.institution}
+                    </h4>
+                    {entry.department && (
+                      <p className="mt-1 text-sm leading-6 text-muted">
+                        {entry.department}
+                      </p>
+                    )}
+                    {entry.detail && (
+                      <p className="mt-1 text-xs leading-5 text-muted">
+                        {entry.detail}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section
+            aria-labelledby="activities-heading"
+            className="min-w-0 border-t border-border pt-8"
+          >
+            <h3
+              id="activities-heading"
+              className="mb-5 text-lg font-semibold tracking-tight sm:text-xl"
+            >
+              Activities &amp; Leadership
+            </h3>
+            <ol className="divide-y divide-border">
+              {activities.map((entry) => (
+                <li
+                  key={entry.period}
+                  lang="ko"
+                  className="grid gap-2 py-4 first:pt-0 last:pb-0 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-5"
+                >
+                  <p className="font-mono text-sm leading-6 whitespace-nowrap text-foreground">
+                    {entry.period}
+                  </p>
+                  <div className="min-w-0">
+                    <h4 className="text-base leading-6 font-semibold break-keep">
+                      {entry.organization}
+                    </h4>
+                    <p className="mt-1 text-sm leading-6 text-muted">
+                      {entry.role}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section
+            aria-labelledby="scholarships-heading"
+            className="min-w-0 border-t border-border pt-8"
+          >
+            <h3
+              id="scholarships-heading"
+              className="mb-5 text-lg font-semibold tracking-tight sm:text-xl"
+            >
+              Scholarships
+            </h3>
+            <ul className="divide-y divide-border">
+              {scholarships.map((entry) => (
+                <li
+                  key={`${entry.period ?? "undated"}-${entry.title}`}
+                  lang="ko"
+                  className="grid gap-2 py-4 first:pt-0 last:pb-0 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-5"
+                >
+                  {entry.period && (
+                    <p className="font-mono text-sm leading-6 whitespace-nowrap text-foreground">
+                      {entry.period}
+                    </p>
+                  )}
+                  <div
+                    className={`min-w-0${entry.period ? "" : " sm:col-start-2"}`}
+                  >
+                    <h4 className="text-base leading-6 font-semibold break-keep">
+                      {entry.title}
+                    </h4>
+                    {entry.detail && (
+                      <p className="mt-1 text-sm leading-6 text-muted">
+                        {entry.detail}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
       </section>
     </main>

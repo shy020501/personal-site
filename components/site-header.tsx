@@ -4,7 +4,7 @@ const navigation = [
   { label: "Projects", href: "/projects" },
   { label: "Publications", href: "/publications" },
   { label: "Case Studies", href: "/case-studies" },
-  { label: "About", href: "/about" },
+  { label: "About", href: "/#about" },
 ];
 
 export function SiteHeader() {
