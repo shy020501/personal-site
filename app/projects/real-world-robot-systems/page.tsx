@@ -12,6 +12,8 @@ import sensorPhoto from "@/public/images/projects/real-world-robot-systems/senso
 import dashboardVisualizerImage from "@/public/images/projects/real-world-robot-systems/visualizer.png";
 import stlVisualizerImage from "@/public/images/projects/real-world-robot-systems/visualizer_stl.png";
 import wristCameraPhoto from "@/public/images/projects/real-world-robot-systems/wrist_cam.jpg";
+import { CollectedDataSection } from "./collected-data-section";
+import { HilSystemDiagram } from "./hil-system-diagram";
 
 const subtitle =
   "실제 로봇 실험을 위한 로봇 시스템 통합, HIL 환경 구축, F/T 센서 기반 실시간 모니터링 및 멀티모달 데이터 수집 시스템을 개발했습니다.";
@@ -58,14 +60,6 @@ const platforms = [
       },
     ],
   },
-];
-
-const dataSources = [
-  "Camera Observations",
-  "Robot States",
-  "Actions",
-  "Task Progress",
-  "Force / Torque Signals",
 ];
 
 const galleryCaptions = ["실험 환경", "시스템 통합", "로봇 실험 데모"];
@@ -389,65 +383,89 @@ export default function RealWorldRobotSystemsPage() {
           className="border-b border-border py-10 sm:py-12"
         >
           <SectionHeading id="hil-heading" title="HIL System" />
-          <p className="text-sm leading-7 break-keep sm:text-base sm:leading-8">
-            Simulation과 실제 로봇을 연결하는 Human-in-the-Loop (HIL) 환경을
-            소개합니다. 제어 명령과 로봇 상태의 연동, 실험 실행 흐름 등 상세 구성은
-            이후 추가할 예정입니다.
-          </p>
-          <div className="mt-6">
-            <MediaPlaceholder
-              kind="diagram"
-              label="HIL 시스템 구성도 준비 중"
-              className="aspect-video sm:aspect-[5/2]"
-            />
-          </div>
-        </section>
+          <div className="flow-root text-sm leading-7 break-keep sm:text-base sm:leading-8">
+            <div className="mb-8 space-y-6 md:float-right md:mb-6 md:ml-6 md:w-[calc(50%-0.75rem)]">
+              <figure>
+                <div className="aspect-video overflow-hidden rounded-md border border-border bg-white">
+                  <HilSystemDiagram />
+                </div>
+              </figure>
 
-        <section
-          aria-labelledby="collection-heading"
-          className="border-b border-border py-10 sm:py-12"
-        >
-          <SectionHeading
-            id="collection-heading"
-            title="Multimodal Data Collection"
-          />
-          <p className="text-sm leading-7 break-keep sm:text-base sm:leading-8">
-            카메라 관측, 로봇 상태, 행동, 작업 진행 정보, F/T 신호를 동기화해
-            수집하는 구성을 소개합니다. 각 데이터의 연결 관계와 동기화·저장 방식은
-            이후 구체화할 예정입니다.
-          </p>
-          <figure className="mt-6 rounded-sm border border-border bg-surface p-6 sm:p-8">
-            <figcaption className="text-center text-xs leading-6 text-muted">
-              데이터 수집 흐름 · 다이어그램 준비 중
-            </figcaption>
-            <div className="mx-auto mt-6 grid max-w-3xl items-center gap-4 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-6">
-              <ul lang="en" className="grid gap-2">
-                {dataSources.map((source) => (
-                  <li
-                    key={source}
-                    className="rounded-sm border border-border bg-white px-4 py-3 text-center text-sm"
-                  >
-                    {source}
-                  </li>
-                ))}
-              </ul>
-              <span
-                aria-hidden="true"
-                className="text-center text-xl text-muted sm:-rotate-90"
-              >
-                ↓
-              </span>
-              <div className="rounded-sm border border-dashed border-border px-5 py-8 text-center">
-                <p lang="en" className="text-sm font-medium text-accent">
-                  Synchronized Collection
-                </p>
-                <p className="mt-2 text-xs leading-6 text-muted">
-                  동기화 및 저장 구성 예정
+              <div className="flex aspect-video flex-col items-center justify-center gap-3 rounded-md border border-border bg-surface text-muted">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.25"
+                  className="size-8 opacity-60"
+                >
+                  <rect x="2" y="5" width="28" height="22" rx="2" />
+                  <path d="m13 11 8 5-8 5Z" />
+                </svg>
+                <p className="text-center text-xs leading-6">
+                  <span lang="en" className="block">HIL Teleoperation Demo</span>
+                  영상 준비 중
                 </p>
               </div>
             </div>
-          </figure>
+
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h3 lang="en" className="text-base leading-7 font-bold sm:text-lg">
+                  Policy &amp; Human Intervention
+                </h3>
+                <p>
+                  Policy action과 Dual SpaceMouse 기반 human intervention을
+                  중재하는 Human-in-the-Loop (HIL) wrapper를 구현하였습니다. 작업자
+                  입력 유무에 따라 매 step에서 실행할 action을 선택합니다.
+                </p>
+                <p>
+                  SpaceMouse의 움직임이나 gripper 입력이 감지되면{" "}
+                  <code className="text-[0.9em]">intervened=True</code>로 판단하고,
+                  policy action을 expert action으로 대체합니다. Intervention이
+                  없으면 policy action을 그대로 사용합니다.
+                  실행 중에는 human intervention이 발생한 action과 버튼·회전 잠금
+                  상태를 함께 기록하여, 작업자의 개입과 조작 과정을 확인할 수
+                  있도록 하였습니다.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <h3 lang="en" className="text-base leading-7 font-bold sm:text-lg">
+                  Teleoperation &amp; Logging
+                </h3>
+                <p>
+                  Dual SpaceMouse로 로봇의 위치·자세와 gripper를 조작하며,
+                  이동·회전 잠금과 오른팔 단독 조작을 지원합니다. 입력에는{" "}
+                  <code className="text-[0.9em]">invsymlog</code>를 적용해 로봇이
+                  사용하는 action 형식으로 변환합니다.
+                </p>
+                <p>
+                  미세한 SpaceMouse 움직임으로 불필요한 intervention이 발생하지
+                  않도록 입력 크기에 임계값을 적용하였습니다. 또한, gripper의 개폐
+                  동작 delay를 고려하여 버튼 입력에 0.5초의 최소 간격을 설정하고,
+                  개폐 명령이 짧은 시간에 반복 전달되지 않도록 하였습니다.
+                </p>
+                <p>
+                  SpaceMouse 회전 입력 시 TCP 중심 회전으로 인해 그리퍼 끝단의
+                  위치가 크게 변하는 문제를 줄이기 위해, 그리퍼 길이와 현재 자세를
+                  기반으로 끝단의 변위를 계산했습니다. 계산된 변위를 Cartesian
+                  translation에 보상하여, 그리퍼 끝단을 중심으로 회전하는 것에
+                  가까운 직관적인 원격 조작을 구현했습니다.
+                </p>
+                <p>
+                  로봇 환경이 특정 조작 장치에 종속되지 않도록, 장치별 입력을 공통
+                  action 형식으로 변환하는 teleoperator-agnostic 구조로
+                  설계하였습니다. 다른 장치는 이 형식에 맞는 입력 연동을 추가하는
+                  방식으로 확장할 수 있습니다.
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
+
+        <CollectedDataSection />
 
         <section
           aria-labelledby="gallery-heading"

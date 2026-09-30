@@ -29,7 +29,7 @@ const publications: Publication[] = [
     ],
     description:
       "Diffusion model의 reward fine-tuning에서 발생하는 timestep-wise optimization imbalance를 분석하고, 이를 완화하기 위한 gradient-balanced LoRA 구조를 제안합니다.",
-    paperHref: "/pdf/GTP_LoRA.pdf",
+    paperHref: "/pdf/publications/GTP_LoRA.pdf",
     // githubHref: "https://github.com/shy020501",
   },
   {
@@ -44,7 +44,7 @@ const publications: Publication[] = [
     ],
     description:
       "VLM feedback을 활용하여 text-to-image diffusion model에서 다양한 concept에 일반화 가능한 unlearning 방법을 제안합니다.",
-    paperHref: "/pdf/Generalized_Concept_Unlearning.pdf",
+    paperHref: "/pdf/publications/Generalized_Concept_Unlearning.pdf",
   },
 ];
 
@@ -105,11 +105,28 @@ const education = [
 
 const activities = [
   {
+    id: "student-council-vice-president",
     period: "2024.02 – 2024.11",
     organization: "소프트웨어융합대학 학생회",
     role: "부학생회장",
+    href: "https://www.instagram.com/p/C0tfrNePAFB/",
   },
   {
+    id: "uni-dthon-organizer",
+    period: "2024.02 – 2024.11",
+    organization: "UNI-DTHON 운영진",
+    role: "홍보팀",
+    href: "https://www.instagram.com/p/DAiYQaGBdN0/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA%3D%3D&img_index=3",
+  },
+  {
+    id: "spark-11",
+    period: "2023.03 – 2023.12",
+    organization: "SPARK 11기",
+    role: "Video Wizard 창업",
+    href: "/pdf/about/SPARK.pdf",
+  },
+  {
+    id: "student-council-member",
     period: "2022.02 – 2024.02",
     organization: "소프트웨어융합대학 학생회",
     role: "부원",
@@ -484,7 +501,7 @@ export default function Home() {
             <ol className="divide-y divide-border">
               {activities.map((entry) => (
                 <li
-                  key={entry.period}
+                  key={entry.id}
                   lang="ko"
                   className="grid gap-2 py-4 first:pt-0 last:pb-0 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-5"
                 >
@@ -493,7 +510,18 @@ export default function Home() {
                   </p>
                   <div className="min-w-0">
                     <h4 className="text-base leading-6 font-semibold break-keep">
-                      {entry.organization}
+                      {entry.href ? (
+                        <a
+                          href={entry.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-accent underline decoration-accent/30 underline-offset-4 transition-colors duration-150 hover:decoration-accent motion-reduce:transition-none"
+                        >
+                          {entry.organization}
+                        </a>
+                      ) : (
+                        entry.organization
+                      )}
                     </h4>
                     <p className="mt-1 text-sm leading-6 text-muted">
                       {entry.role}
