@@ -10,7 +10,8 @@ export function generateStaticParams() {
     .filter(
       (project) =>
         project.slug !== "real-world-robot-systems" &&
-        project.slug !== "open-domain",
+        project.slug !== "open-domain" &&
+        project.slug !== "drone-anomaly-detection",
     )
     .map((project) => ({ slug: project.slug }));
 }

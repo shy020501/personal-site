@@ -198,15 +198,10 @@ export function CollectedDataSection() {
         </div>
 
         <div className="space-y-4">
-          <p className="text-sm leading-6 break-keep text-muted">
-            아래 인덱스는 0부터 시작하며 범위의 양 끝을 포함합니다. 각 field는{" "}
-            <code>left/</code> 또는 <code>right/</code> 접두어로 구분합니다.
-          </p>
           <div className="grid items-start gap-8 lg:grid-cols-2 lg:gap-6">
             <div className="min-w-0 space-y-4">
               <h3 lang="en" className="text-base leading-7 font-bold sm:text-lg">
                 Robot State
-                <code className="ml-3 text-sm font-normal text-muted">(1, 38)</code>
               </h3>
               <p className="text-sm leading-7 break-keep sm:text-base sm:leading-8">
                 왼팔 19차원과 오른팔 19차원을 이어 붙인 38차원 state입니다.
@@ -230,7 +225,6 @@ export function CollectedDataSection() {
             <div className="min-w-0 space-y-4">
               <h3 lang="en" className="text-base leading-7 font-bold sm:text-lg">
                 Actions
-                <code className="ml-3 text-sm font-normal text-muted">(14,)</code>
               </h3>
               <p className="text-sm leading-7 break-keep sm:text-base sm:leading-8">
                 각 팔의 position 3개, orientation 3개, gripper action 1개를 묶은
