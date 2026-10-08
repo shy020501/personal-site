@@ -1,67 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ContentCard } from "@/components/content-card";
+import { PublicationList } from "@/components/publication-list";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
+import { caseStudies } from "@/content/case-studies";
+import { publications } from "@/content/publications";
 import { getHomeProjects } from "@/content/projects";
 import profilePhoto from "@/public/images/profile.jpg";
-
-type Publication = {
-  title: string;
-  status: string;
-  year: string;
-  authors: { name: string; marker?: "*" | "†" }[];
-  description: string;
-  paperHref?: string;
-  githubHref?: string;
-};
-
-// Illustrative content to replace with actual projects and writing.
-const publications: Publication[] = [
-  {
-    title:
-      "Gradient-Balanced Timestep-Partitioned LoRA for Reward Fine-Tuning of Diffusion Models",
-    status: "Under Review · ICLR 2027",
-    year: "2026",
-    authors: [
-      { name: "Seunghyo Yun" },
-      { name: "Seungjun Oh" },
-      { name: "Yusung Kim", marker: "†" },
-    ],
-    description:
-      "Diffusion model의 reward fine-tuning에서 발생하는 timestep-wise optimization imbalance를 분석하고, 이를 완화하기 위한 gradient-balanced LoRA 구조를 제안합니다.",
-    paperHref: "/pdf/publications/GTP_LoRA.pdf",
-    // githubHref: "https://github.com/shy020501",
-  },
-  {
-    title:
-      "Generalized Concept Unlearning Guided by AI Feedback for Text-to-Image Diffusion Models",
-    status: "Preprint",
-    year: "2025",
-    authors: [
-      { name: "Taehoon Lee", marker: "*" },
-      { name: "Seunghyo Yun", marker: "*" },
-      { name: "Yusung Kim", marker: "†" },
-    ],
-    description:
-      "VLM feedback을 활용하여 text-to-image diffusion model에서 다양한 concept에 일반화 가능한 unlearning 방법을 제안합니다.",
-    paperHref: "/pdf/publications/Generalized_Concept_Unlearning.pdf",
-  },
-];
-
-const caseStudies = [
-  {
-    category: "INDUSTRY ANALYSIS",
-    title: "Amazon Robotics: 물체 인식 기반 로봇 피킹 시스템",
-    description:
-      "Amazon의 물류 자동화 사례를 중심으로 perception, robot manipulation, system integration이 실제 산업 환경에서 어떻게 결합되는지 살펴봅니다.",
-  },
-  {
-    category: "TECHNICAL ANALYSIS",
-    title: "VLA의 Test-Time Scaling: 행동 후보 생성과 선택",
-    description:
-      "Vision-Language-Action 모델에서 여러 행동 후보를 생성하고 verifier나 value model을 통해 최종 행동을 선택하는 test-time scaling 방법들을 정리합니다.",
-  },
-];
 
 const experience = [
   {
@@ -84,6 +30,7 @@ const education = [
   {
     period: "2025.09 – 2027.02",
     institution: "성균관대학교",
+    href: "https://www.skku.edu/skku/index.do",
     lang: "ko",
     department: "소프트웨어학과",
     detail: "GPA 4.30 · 조기졸업 예정",
@@ -91,6 +38,7 @@ const education = [
   {
     period: "2022.03 – 2025.09",
     institution: "성균관대학교",
+    href: "https://www.skku.edu/skku/index.do",
     lang: "ko",
     department: "소프트웨어학과",
     detail: "GPA 4.09 · 조기졸업",
@@ -98,6 +46,7 @@ const education = [
   {
     period: "2018.08 – 2021.05",
     institution: "The British International School Shanghai, Puxi",
+    href: "https://www.nordangliaeducation.com/biss-puxi",
     lang: "en",
     detail: "중국, 상하이",
   },
@@ -157,20 +106,6 @@ const scholarships = [
     title: "성적우수장학금(우수)",
   },
 ];
-
-function GitHubIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      focusable="false"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className="h-4 w-4 shrink-0"
-    >
-      <path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.043-1.61-4.043-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.838 1.237 1.838 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.605-2.665-.303-5.467-1.334-5.467-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.52 11.52 0 0 1 12 5.6c1.02.005 2.045.138 3.003.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.652.243 2.873.119 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.625-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.898-.015 3.293 0 .322.216.694.825.576C20.565 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-    </svg>
-  );
-}
 
 export default function Home() {
   const projects = getHomeProjects();
@@ -265,95 +200,7 @@ export default function Home() {
           title="Publications"
           action={{ label: "View all publications", href: "/publications" }}
         />
-        <ul className="divide-y divide-border">
-          {publications.map((publication) => (
-            <li key={publication.title} className="py-6 first:pt-0 last:pb-0">
-              <article className="grid gap-2 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-6">
-                <time
-                  dateTime={publication.year}
-                  className="font-mono text-sm leading-6 text-muted sm:pt-0.5"
-                >
-                  {publication.year}
-                </time>
-                <div className="min-w-0">
-                  <h3 className="max-w-4xl text-lg leading-snug font-semibold tracking-tight sm:text-xl">
-                    {publication.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-muted">
-                    {publication.authors.map((author, index) => (
-                      <span key={author.name}>
-                        {index > 0 && ", "}
-                        {author.name === "Seunghyo Yun" ? (
-                          <strong className="font-bold text-foreground">
-                            {author.name}
-                          </strong>
-                        ) : (
-                          author.name
-                        )}
-                        {author.marker && (
-                          <sup className="ml-0.5">{author.marker}</sup>
-                        )}
-                      </span>
-                    ))}
-                  </p>
-                  <p className="mt-1 text-xs leading-5 text-muted">
-                    {publication.status}
-                  </p>
-                  <p
-                    lang="ko"
-                    className="mt-3 max-w-4xl text-sm leading-7 break-keep text-foreground"
-                  >
-                    {publication.description}
-                  </p>
-                  <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-1">
-                    <a
-                      href={publication.paperHref ?? "#"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-disabled={publication.paperHref ? undefined : true}
-                      tabIndex={publication.paperHref ? undefined : -1}
-                      title={
-                        publication.paperHref
-                          ? undefined
-                          : "Paper link coming soon"
-                      }
-                      className={`inline-flex min-h-9 items-center gap-2 rounded-sm border border-accent bg-accent px-4 py-1.5 text-sm font-normal text-white transition-colors duration-150 motion-reduce:transition-none${
-                        publication.paperHref
-                          ? " hover:border-[#10263e] hover:bg-[#10263e]"
-                          : " pointer-events-none opacity-60"
-                      }`}
-                    >
-                      Paper
-                      {!publication.paperHref && (
-                        <span className="sr-only">(coming soon)</span>
-                      )}
-                    </a>
-                    {publication.githubHref ? (
-                      <a
-                        href={publication.githubHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-link font-normal"
-                      >
-                        <GitHubIcon />
-                        GitHub <span aria-hidden="true">↗</span>
-                      </a>
-                    ) : (
-                      <span
-                        className="inline-flex items-center gap-2 py-2 text-sm font-normal text-muted"
-                        title="GitHub link coming soon"
-                      >
-                        <GitHubIcon />
-                        GitHub <span aria-hidden="true">↗</span>
-                        <span className="sr-only">(coming soon)</span>
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </article>
-            </li>
-          ))}
-        </ul>
+        <PublicationList publications={publications} />
       </section>
 
       <section
@@ -368,31 +215,14 @@ export default function Home() {
         />
         <div className="grid gap-6 md:grid-cols-2 md:gap-8">
           {caseStudies.map((study) => (
-            <article
-              key={study.title}
-              className="flex h-full min-w-0 flex-col rounded-sm border border-border bg-white p-6 sm:p-7"
-            >
-              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-accent">
-                {study.category}
-              </p>
-              <h3
-                lang="ko"
-                className="mt-3 text-lg leading-snug font-medium tracking-tight break-keep"
-              >
-                {study.title}
-              </h3>
-              <p
-                lang="ko"
-                className="mt-2 mb-4 text-sm leading-7 break-keep text-foreground"
-              >
-                {study.description}
-              </p>
-              <Link href="/case-studies" className="text-link mt-auto">
-                Read Case Study
-                <span className="sr-only">: {study.title}</span>
-                <span aria-hidden="true">→</span>
-              </Link>
-            </article>
+            <ContentCard
+              key={study.slug}
+              category={study.category}
+              title={study.title}
+              description={study.description}
+              href={`/case-studies/${study.slug}`}
+              cta="Read Case Study"
+            />
           ))}
         </div>
       </section>
@@ -470,7 +300,14 @@ export default function Home() {
                   </p>
                   <div className="min-w-0">
                     <h4 className="text-base leading-6 font-semibold">
-                      {entry.institution}
+                      <a
+                        href={entry.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-accent underline decoration-accent/30 underline-offset-4 transition-colors duration-150 hover:decoration-accent motion-reduce:transition-none"
+                      >
+                        {entry.institution}
+                      </a>
                     </h4>
                     {entry.department && (
                       <p className="mt-1 text-sm leading-6 text-muted">

@@ -256,7 +256,11 @@ export default function OpenDomainPage() {
             <Link href="/projects/real-world-robot-systems" className="text-link">
               Robot Platforms & Infrastructure <span aria-hidden="true">→</span>
             </Link>
-            <dl className="grid gap-6 border-y border-border py-5 sm:grid-cols-2 lg:grid-cols-4">
+            <dl
+              aria-labelledby="sfm-evaluation"
+              tabIndex={0}
+              className="grid grid-cols-[repeat(4,minmax(140px,1fr))] gap-6 overflow-x-auto border-y border-border py-5 sm:grid-cols-2 sm:overflow-x-visible lg:grid-cols-4"
+            >
               <div>
                 <dt lang="en" className="text-sm text-muted">Demonstrations</dt>
                 <dd className="mt-1 text-2xl font-semibold text-accent">450</dd>

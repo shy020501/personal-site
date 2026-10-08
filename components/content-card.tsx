@@ -6,6 +6,7 @@ type ContentCardProps = {
   description: string;
   href: string;
   cta: string;
+  headingLevel?: "h2" | "h3";
 };
 
 export function ContentCard({
@@ -14,16 +15,25 @@ export function ContentCard({
   description,
   href,
   cta,
+  headingLevel: Heading = "h3",
 }: ContentCardProps) {
   return (
-    <article className="flex h-full flex-col rounded-sm border border-border bg-white p-6 sm:p-7">
+    <article className="flex h-full min-w-0 flex-col rounded-sm border border-border bg-white p-6 sm:p-7">
       <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-accent">
         {category}
       </p>
-      <h3 className="mt-5 text-xl font-medium leading-snug tracking-tight">
+      <Heading
+        lang="ko"
+        className="mt-3 text-lg leading-snug font-medium tracking-tight break-keep"
+      >
         {title}
-      </h3>
-      <p className="mt-3 mb-7 text-sm leading-7 text-muted">{description}</p>
+      </Heading>
+      <p
+        lang="ko"
+        className="mt-2 mb-4 text-sm leading-7 break-keep text-foreground"
+      >
+        {description}
+      </p>
       <Link href={href} className="text-link mt-auto">
         {cta}
         <span className="sr-only">: {title}</span>
