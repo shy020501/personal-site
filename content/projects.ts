@@ -90,6 +90,19 @@ export const projects: readonly Project[] = [
     showOnHome: false,
     homeOrder: 99,
   },
+  {
+    slug: "so-arm",
+    title: "SO-ARM 기반 로봇 제어 소프트웨어 직접 구현",
+    category: "ROBOT CONTROL · TELEOPERATION",
+    organization: "개인 프로젝트",
+    description:
+      "PyBrain SO-ARM을 기반으로 저수준 로봇 제어 인터페이스부터 teleoperation과 데이터 수집까지 연결하는 독립적인 소프트웨어 스택을 개발하고자 합니다.",
+    detailHref: "/projects/so-arm",
+    order: 5,
+    visible: true,
+    showOnHome: false,
+    homeOrder: 99,
+  },
 ];
 
 export function getVisibleProjects(source: readonly Project[] = projects) {

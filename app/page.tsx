@@ -37,10 +37,10 @@ const education = [
   },
   {
     period: "2022.03 – 2025.09",
-    institution: "성균관대학교 학사과정",
+    institution: "성균관대학교",
     href: "https://www.skku.edu/skku/index.do",
     lang: "ko",
-    department: "소프트웨어학과",
+    department: "소프트웨어학과 학사과정",
     detail: "GPA 4.09 · 조기졸업",
   },
   {
