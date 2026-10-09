@@ -17,8 +17,12 @@ import skillTsne from "@/public/images/projects/open-domain/skill_tsne.png";
 import softPrompt from "@/public/images/projects/open-domain/soft_prompt.png";
 import uniqueSkillResult from "@/public/images/projects/open-domain/unique_skill_result.png";
 
-const description =
-  "다양한 실제 로봇 작업에서 공유할 수 있는 skill을 학습하고, 이를 시각·언어 맥락과 연결하는 학습 방법을 연구하였습니다. 실제 로봇 기반 Skill Foundation Model에서 Multimodal Skill Representation으로 확장해 온 과정을 소개합니다.";
+// 공개 준비가 되면 true로 변경하여 Part 2와 기존 소개 문구를 복원합니다.
+const SHOW_PART_2 = false;
+
+const description = SHOW_PART_2
+  ? "다양한 실제 로봇 작업에서 공유할 수 있는 skill을 학습하고, 이를 시각·언어 맥락과 연결하는 학습 방법을 연구하였습니다. 실제 로봇 기반 Skill Foundation Model에서 Multimodal Skill Representation으로 확장해 온 과정을 소개합니다."
+  : "실제 로봇 작업에서 재사용 가능한 skill을 학습하고, 이를 행동 생성에 활용하는 Skill Foundation Model (SFM) 연구를 소개합니다.";
 
 const halfWidthImageSizes =
   "(min-width: 1200px) 548px, (min-width: 768px) 46vw, 100vw";
@@ -337,282 +341,284 @@ export default function OpenDomainPage() {
           </ResearchSection>
         </section>
 
-        <section
-          id="multimodal-sfm"
-          aria-labelledby="multimodal-heading"
-          className="scroll-mt-8 pt-12 pb-8 sm:pt-16 sm:pb-10"
-        >
-          <p
-            lang="en"
-            className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent"
+        {SHOW_PART_2 && (
+          <section
+            id="multimodal-sfm"
+            aria-labelledby="multimodal-heading"
+            className="scroll-mt-8 pt-12 pb-8 sm:pt-16 sm:pb-10"
           >
-            Part 2
-          </p>
-          <SectionHeading
-            id="multimodal-heading"
-            title="Multimodal Skill Representation"
-          />
-          <p className="mb-8 text-sm leading-7 break-keep sm:text-base sm:leading-8">
-            앞선 실험을 통해 재사용 가능한 skill 표현을 행동 생성에 활용하는
-            효과를 확인하였습니다. 이를 바탕으로 현재의 시각적 상황과 작업
-            의도를 함께 반영할 수 있도록, skill 표현을 멀티모달 정보와 연결하는
-            방향으로 연구를 확장하였습니다. 
-          </p>
+            <p
+              lang="en"
+              className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent"
+            >
+              Part 2
+            </p>
+            <SectionHeading
+              id="multimodal-heading"
+              title="Multimodal Skill Representation"
+            />
+            <p className="mb-8 text-sm leading-7 break-keep sm:text-base sm:leading-8">
+              앞선 실험을 통해 재사용 가능한 skill 표현을 행동 생성에 활용하는
+              효과를 확인하였습니다. 이를 바탕으로 현재의 시각적 상황과 작업
+              의도를 함께 반영할 수 있도록, skill 표현을 멀티모달 정보와 연결하는
+              방향으로 연구를 확장하였습니다.
+            </p>
 
-          <ResearchSection
-            id="multimodal-motivation"
-            title="Motivation"
-          >
-            <p>
-              기존처럼 action reconstruction loss만으로 학습한 skill encoder는
-              연속된 행동을 압축하고, 복원에 필요한 반복적인 동작 패턴을
-              표현하는 데에는 효과적입니다. 그러나 이러한 학습만으로는
-              조작 대상이나 작업 의도와 같은 semantic 정보를 skill에
-              명시적으로 담기 어렵습니다.
-              이에 로봇이 어떤 동작을 수행하는지와 함께, 어떤 대상을 향해 어떤 의도로
-              움직이는지를 표현하기 위해 시각·언어 정보를 skill 학습에
-              연결하고자 하였습니다. 시각 정보는 현재 장면과 조작 대상을, 언어 정보는
-              작업의 목표와 의미를 제공하므로, 행동 패턴을 현재 상황에 맞게
-              해석하는 데 활용할 수 있습니다.
-            </p>
-            <p>
-              이를 위해 필요한 것은 현재 수행 중인 skill의 문맥입니다.
-              그러나 데이터에는 episode 전체를 설명하는 task description만
-              있고, 세부 skill에 대한 annotation은 없는 경우가 많습니다.
-              예를 들어 “그릇을 서랍에 넣고, 서랍을 닫아라”라는 지시는 있어도,
-              각 구간을 “그릇 집기”, “서랍에 놓기”, “서랍 닫기”로 나눈 설명은
-              제공되지 않습니다.
-            </p>
-            <p>
-              설령 이러한 세부 문맥을 설명하는 텍스트가 제공되더라도,
-              각 문맥이 시작되고 끝나는 지점을 사람이 step 단위로 별도
-              annotation하지 않으면 텍스트와 행동 사이의 정확한 시간적 대응을
-              알기 어렵습니다. 또한 현재의 skill 학습에서는 demonstration에서
-              연속된 32 step을 무작위로 추출하여 사용하므로, 하나의 학습 구간이
-              반드시 단일 문맥에만 대응하지는 않습니다. 예를 들어 그릇을 서랍에
-              놓는 동작에서 서랍을 닫는 동작으로 넘어가는 구간처럼, 여러 문맥에
-              걸친 행동이나 문맥 사이의 전환 동작이 함께 포함될 수 있습니다.
-            </p>
-          </ResearchSection>
+            <ResearchSection
+              id="multimodal-motivation"
+              title="Motivation"
+            >
+              <p>
+                기존처럼 action reconstruction loss만으로 학습한 skill encoder는
+                연속된 행동을 압축하고, 복원에 필요한 반복적인 동작 패턴을
+                표현하는 데에는 효과적입니다. 그러나 이러한 학습만으로는
+                조작 대상이나 작업 의도와 같은 semantic 정보를 skill에
+                명시적으로 담기 어렵습니다.
+                이에 로봇이 어떤 동작을 수행하는지와 함께, 어떤 대상을 향해 어떤 의도로
+                움직이는지를 표현하기 위해 시각·언어 정보를 skill 학습에
+                연결하고자 하였습니다. 시각 정보는 현재 장면과 조작 대상을, 언어 정보는
+                작업의 목표와 의미를 제공하므로, 행동 패턴을 현재 상황에 맞게
+                해석하는 데 활용할 수 있습니다.
+              </p>
+              <p>
+                이를 위해 필요한 것은 현재 수행 중인 skill의 문맥입니다.
+                그러나 데이터에는 episode 전체를 설명하는 task description만
+                있고, 세부 skill에 대한 annotation은 없는 경우가 많습니다.
+                예를 들어 “그릇을 서랍에 넣고, 서랍을 닫아라”라는 지시는 있어도,
+                각 구간을 “그릇 집기”, “서랍에 놓기”, “서랍 닫기”로 나눈 설명은
+                제공되지 않습니다.
+              </p>
+              <p>
+                설령 이러한 세부 문맥을 설명하는 텍스트가 제공되더라도,
+                각 문맥이 시작되고 끝나는 지점을 사람이 step 단위로 별도
+                annotation하지 않으면 텍스트와 행동 사이의 정확한 시간적 대응을
+                알기 어렵습니다. 또한 현재의 skill 학습에서는 demonstration에서
+                연속된 32 step을 무작위로 추출하여 사용하므로, 하나의 학습 구간이
+                반드시 단일 문맥에만 대응하지는 않습니다. 예를 들어 그릇을 서랍에
+                놓는 동작에서 서랍을 닫는 동작으로 넘어가는 구간처럼, 여러 문맥에
+                걸친 행동이나 문맥 사이의 전환 동작이 함께 포함될 수 있습니다.
+              </p>
+            </ResearchSection>
 
-          <ResearchSection
-            id="multimodal-soft-prompts"
-            title="Conditional Soft Prompts"
-          >
-            <div className="grid items-start gap-6 md:grid-cols-2">
-              <div className="space-y-5">
+            <ResearchSection
+              id="multimodal-soft-prompts"
+              title="Conditional Soft Prompts"
+            >
+              <div className="grid items-start gap-6 md:grid-cols-2">
+                <div className="space-y-5">
+                  <p>
+                    이러한 annotation의 한계를 고려하여, 현재 이미지와 task description에 조건화된 학습 가능한 soft prompt를 도입하였습니다.{" "}
+                    <a
+                      href="https://arxiv.org/abs/2203.05557"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={inlineLinkClassName}
+                    >
+                      CoCoOp
+                    </a>
+                    의 구조를 활용하여 soft prompt generator가 현재 장면에 맞는 prompt embedding을 생성하고,
+                    이를 task description과 함께 text encoder에 전달하여 전체 작업 지시에
+                    현재 수행 중인 동작의 문맥을 반영하도록 하였습니다.
+                  </p>
+                  <p>
+                    같은 작업 지시가 주어지더라도 그릇을 집는 구간과 서랍을 닫는 구간,
+                    그리고 그 사이의 전환 구간에서 필요한 문맥은 달라집니다.
+                    Conditional soft prompt는 세부 문맥이나 구간 경계를 별도로
+                    annotation하지 않고도, 현재 관측에 따라 달라지는 표현으로 이러한
+                    차이를 반영하도록 설계하였습니다.
+                  </p>
+                </div>
+                <ResearchImage
+                  src={softPrompt}
+                  alt="현재 이미지와 task description에서 Soft Prompt를 생성하는 구조와, 그릇 집기·서랍 닫기의 Skill에 따라 문맥이 달라지는 예시"
+                  sizes={halfWidthImageSizes}
+                />
+              </div>
+            </ResearchSection>
+
+            <ResearchSection
+              id="multimodal-architecture"
+              title="Multimodal SFM Architecture"
+            >
+              <div className="space-y-3">
+                <h4 lang="en" className="text-base font-semibold">
+                  Stage 1 — Multimodal Skill Learning
+                </h4>
                 <p>
-                  이러한 annotation의 한계를 고려하여, 현재 이미지와 task description에 조건화된 학습 가능한 soft prompt를 도입하였습니다.{" "}
+                  Action sequence를 복원하는 reconstruction loss로 skill
+                  encoder와 decoder를 학습하는 동시에, skill 표현을 시각·언어
+                  특징과 정렬하였습니다. 이때 앞서 설명한 conditional soft prompt를
+                  task description과 함께 CLIP text encoder에 입력하여,
+                  작업 지시와 함께 현재 장면과 동작의 문맥을 반영한
+                  언어 특징을 얻도록 하였습니다. 이렇게 얻은 언어 특징과
+                  CLIP image encoder의 시각 특징을{" "}
                   <a
-                    href="https://arxiv.org/abs/2203.05557"
+                    href="https://boost-robots.github.io/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={inlineLinkClassName}
                   >
-                    CoCoOp
+                    BooST
                   </a>
-                  의 구조를 활용하여 soft prompt generator가 현재 장면에 맞는 prompt embedding을 생성하고,
-                  이를 task description과 함께 text encoder에 전달하여 전체 작업 지시에
-                  현재 수행 중인 동작의 문맥을 반영하도록 하였습니다.
+                  -style로 결합하고, 투영된 skill 표현과
+                  V-L feature 사이에 symmetric contrastive loss를 적용하였습니다.
                 </p>
                 <p>
-                  같은 작업 지시가 주어지더라도 그릇을 집는 구간과 서랍을 닫는 구간,
-                  그리고 그 사이의 전환 구간에서 필요한 문맥은 달라집니다.
-                  Conditional soft prompt는 세부 문맥이나 구간 경계를 별도로
-                  annotation하지 않고도, 현재 관측에 따라 달라지는 표현으로 이러한
-                  차이를 반영하도록 설계하였습니다.
+                  이 단계에서는 CLIP image·text encoder를 고정하고,
+                  skill encoder·decoder와 projection, soft prompt generator를
+                  함께 학습하였습니다. 멀티모달 정렬의 학습 신호를 soft prompt
+                  generator에도 전달하여, 현재 행동 구간과 연결되는 문맥을
+                  표현하도록 하였습니다. 이를 통해 별도의 skill 문맥 annotation
+                  없이도 행동 패턴과 시각·언어 의미 정보를 함께 담는 skill을
+                  학습하고자 하였습니다.
+                </p>
+              </div>
+              <div className="space-y-3">
+                <h4 lang="en" className="text-base font-semibold">
+                  Stage 2 — Skill Generator Learning
+                </h4>
+                <p>
+                  이미지와 언어 조건을 입력받는 Transformer 및 flow 기반 skill
+                  expert가 skill 표현을 생성하도록 학습하였습니다. 생성된 skill은
+                  1단계에서 학습한 decoder를 거쳐 action sequence로 복원됩니다.
+                  이때 skill decoder와 학습된 soft prompt generator를 고정하여,
+                  학습한 표현을 실제 행동 생성에 활용하는 skill generator를
+                  학습하였습니다.
                 </p>
               </div>
               <ResearchImage
-                src={softPrompt}
-                alt="현재 이미지와 task description에서 Soft Prompt를 생성하는 구조와, 그릇 집기·서랍 닫기의 Skill에 따라 문맥이 달라지는 예시"
-                sizes={halfWidthImageSizes}
+                src={multimodalSkillOverview}
+                alt="Stage 1에서 행동 복원과 V-L·Skill 정렬을 학습하고, Stage 2에서 고정된 Skill Decoder와 Soft Prompt를 활용해 Skill Generator를 학습하는 Multimodal SFM 구조"
               />
-            </div>
-          </ResearchSection>
+            </ResearchSection>
 
-          <ResearchSection
-            id="multimodal-architecture"
-            title="Multimodal SFM Architecture"
-          >
-            <div className="space-y-3">
-              <h4 lang="en" className="text-base font-semibold">
-                Stage 1 — Multimodal Skill Learning
-              </h4>
-              <p>
-                Action sequence를 복원하는 reconstruction loss로 skill
-                encoder와 decoder를 학습하는 동시에, skill 표현을 시각·언어
-                특징과 정렬하였습니다. 이때 앞서 설명한 conditional soft prompt를
-                task description과 함께 CLIP text encoder에 입력하여,
-                작업 지시와 함께 현재 장면과 동작의 문맥을 반영한
-                언어 특징을 얻도록 하였습니다. 이렇게 얻은 언어 특징과
-                CLIP image encoder의 시각 특징을{" "}
-                <a
-                  href="https://boost-robots.github.io/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={inlineLinkClassName}
-                >
-                  BooST
-                </a>
-                -style로 결합하고, 투영된 skill 표현과
-                V-L feature 사이에 symmetric contrastive loss를 적용하였습니다.
-              </p>
-              <p>
-                이 단계에서는 CLIP image·text encoder를 고정하고,
-                skill encoder·decoder와 projection, soft prompt generator를
-                함께 학습하였습니다. 멀티모달 정렬의 학습 신호를 soft prompt
-                generator에도 전달하여, 현재 행동 구간과 연결되는 문맥을
-                표현하도록 하였습니다. 이를 통해 별도의 skill 문맥 annotation
-                없이도 행동 패턴과 시각·언어 의미 정보를 함께 담는 skill을
-                학습하고자 하였습니다.
-              </p>
-            </div>
-            <div className="space-y-3">
-              <h4 lang="en" className="text-base font-semibold">
-                Stage 2 — Skill Generator Learning
-              </h4>
-              <p>
-                이미지와 언어 조건을 입력받는 Transformer 및 flow 기반 skill
-                expert가 skill 표현을 생성하도록 학습하였습니다. 생성된 skill은
-                1단계에서 학습한 decoder를 거쳐 action sequence로 복원됩니다.
-                이때 skill decoder와 학습된 soft prompt generator를 고정하여,
-                학습한 표현을 실제 행동 생성에 활용하는 skill generator를
-                학습하였습니다.
-              </p>
-            </div>
-            <ResearchImage
-              src={multimodalSkillOverview}
-              alt="Stage 1에서 행동 복원과 V-L·Skill 정렬을 학습하고, Stage 2에서 고정된 Skill Decoder와 Soft Prompt를 활용해 Skill Generator를 학습하는 Multimodal SFM 구조"
-            />
-          </ResearchSection>
-
-          <ResearchSection
-            id="multimodal-experiments"
-            title="Experiments & Analysis"
-          >
-            <div className="space-y-3">
-              <h4 id="libero-results-heading" lang="en" className="text-base font-semibold">
-                LIBERO-LONG Evaluation
-              </h4>
-              <p>
-                LIBERO-LONG에서 학습 및 평가를 수행한 결과, Multimodal SFM의
-                성공률은 87.2%로 나타났습니다. Action-only skill 모델인 QueST의
-                72.8%와 비교하여 14.4%p 향상된 결과를 보였습니다.
-              </p>
-            </div>
-            <ResearchImage
-              src={multimodalSkillMainResult}
-              alt="LIBERO-LONG 성공률: ResNet-T 44.1%, Diffusion Policy 50.1%, VQ-BeT 59.3%, QueST 72.8%, Multimodal SFM 87.2%"
-            />
-            <p className="text-xs leading-6 text-muted">
-              † QueST: Self-Supervised Skill Abstractions for Learning Continuous
-              Control (NeurIPS 2024)에 보고된 성공률을 인용한 값입니다.
-            </p>
-
-            <div className="space-y-3 pt-3">
-              <h4 id="ablation-results-heading" lang="en" className="text-base font-semibold">
-                Ablation Study
-              </h4>
-              <div className="grid items-start gap-6 lg:grid-cols-2">
-                <div className="min-w-0 space-y-5">
-                  <p>
-                    Soft prompt, language alignment, vision-language alignment,
-                    skill 표현에 대한 ablation study를 진행하였습니다.
-                    w/o L Align은 시각 특징만으로 skill을 정렬하는 설정이며,
-                    w/o V-L Align은 멀티모달 정렬 없이 행동 복원으로 skill을 학습하는
-                    설정입니다. w/o Skill에서는 action sequence를 직접 생성합니다.
-                  </p>
-                  <p>
-                    Soft prompt를 제거하는 경우 성공률이 4.8%p 낮아졌으며, V-L alignment와
-                    skill을 제거한 설정에서는 각각 18.4%p, 20.8%p 낮아졌습니다.
-                    이 실험에서는 skill 표현과 멀티모달 정렬을 함께 사용하는 설정이
-                    가장 높은 성공률을 보였습니다.
-                  </p>
-                </div>
-                <div
-                  role="region"
-                  aria-labelledby="ablation-results-heading"
-                  tabIndex={0}
-                  className="min-w-0 w-full overflow-x-auto rounded-sm border border-border"
-                >
-                  <table className="w-full min-w-[480px] text-left text-sm leading-6">
-                    <thead className="border-b border-border bg-surface text-muted">
-                      <tr>
-                        <th scope="col" lang="en" className="px-4 py-3 font-medium">Setting</th>
-                        <th scope="col" lang="en" className="px-4 py-3 text-right font-medium">Success Rate</th>
-                        <th scope="col" className="px-4 py-3 text-right font-medium">Ours 대비</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-border">
-                      {ablationResults.map((result, index) => (
-                        <tr
-                          key={result.setting}
-                          className={index === 0 ? "bg-surface font-semibold text-accent" : undefined}
-                        >
-                          <th
-                            scope="row"
-                            lang="en"
-                            className={`px-4 py-3 ${index === 0 ? "font-semibold" : "font-normal"}`}
-                          >
-                            {result.setting}
-                          </th>
-                          <td className="px-4 py-3 text-right tabular-nums">
-                            {result.successRate.toFixed(1)}%
-                          </td>
-                          <td className="px-4 py-3 text-right whitespace-nowrap tabular-nums">
-                            {index === 0
-                              ? "—"
-                              : `−${(ablationResults[0].successRate - result.successRate).toFixed(1)}%p`}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-3 pt-3">
-              <h4 lang="en" className="text-base font-semibold">
-                t-SNE Analysis
-              </h4>
-              <p>
-                V-L Align을 적용한 모델과 이를 제거한 모델의 표현 분포를
-                t-SNE로 비교하였습니다. Ours에서는 skill과 V-L feature가
-                같은 영역에 함께 분포하는 양상을 보였으며, w/o V-L Align에서는
-                두 표현이 분리되어 나타났습니다. 이를 통해
-                skill embedding에 시각·언어의 semantic 정보가 반영되는 경향을
-                정성적으로 확인하였습니다.
-              </p>
-            </div>
-            <ResearchImage
-              src={multimodalSkillTsne}
-              alt="Ours에서는 Skill과 V-L feature가 함께 분포하고, w/o V-L Align에서는 두 표현이 상대적으로 분리되는 t-SNE 비교"
-            />
-
-            <div className="space-y-3 pt-3">
-              <h4 lang="en" className="text-base font-semibold">
-                Role of Soft Prompt
-              </h4>
-              <div className="grid items-start gap-6 md:grid-cols-2">
+            <ResearchSection
+              id="multimodal-experiments"
+              title="Experiments & Analysis"
+            >
+              <div className="space-y-3">
+                <h4 id="libero-results-heading" lang="en" className="text-base font-semibold">
+                  LIBERO-LONG Evaluation
+                </h4>
                 <p>
-                  “Put both moka pots on the stove”라는 전체 작업 지시 아래에서,
-                  현재 수행하는 동작이 가까운 moka pot을 집는 상황의 attention을
-                  비교하였습니다. Soft prompt를 사용하는 모델은 현재 조작 대상에
-                  더 집중하는 양상을 보였으며, 제거한 설정은 전체 작업과 관련된
-                  영역에 주의를 분산하는 양상을 보였습니다. 이를 통해 현재 skill의
-                  문맥을 반영하는 soft prompt의 역할을 정성적으로 살펴보았습니다.
+                  LIBERO-LONG에서 학습 및 평가를 수행한 결과, Multimodal SFM의
+                  성공률은 87.2%로 나타났습니다. Action-only skill 모델인 QueST의
+                  72.8%와 비교하여 14.4%p 향상된 결과를 보였습니다.
                 </p>
-                <ResearchImage
-                  src={multimodalSkillHeatmap}
-                  alt="가까운 moka pot을 집는 상황에서 현재 조작 대상에 집중하는 Ours와 주의가 분산되는 w/o Soft Prompt의 attention heatmap 비교"
-                  sizes={halfWidthImageSizes}
-                />
               </div>
-            </div>
-          </ResearchSection>
-        </section>
+              <ResearchImage
+                src={multimodalSkillMainResult}
+                alt="LIBERO-LONG 성공률: ResNet-T 44.1%, Diffusion Policy 50.1%, VQ-BeT 59.3%, QueST 72.8%, Multimodal SFM 87.2%"
+              />
+              <p className="text-xs leading-6 text-muted">
+                † QueST: Self-Supervised Skill Abstractions for Learning Continuous
+                Control (NeurIPS 2024)에 보고된 성공률을 인용한 값입니다.
+              </p>
+
+              <div className="space-y-3 pt-3">
+                <h4 id="ablation-results-heading" lang="en" className="text-base font-semibold">
+                  Ablation Study
+                </h4>
+                <div className="grid items-start gap-6 lg:grid-cols-2">
+                  <div className="min-w-0 space-y-5">
+                    <p>
+                      Soft prompt, language alignment, vision-language alignment,
+                      skill 표현에 대한 ablation study를 진행하였습니다.
+                      w/o L Align은 시각 특징만으로 skill을 정렬하는 설정이며,
+                      w/o V-L Align은 멀티모달 정렬 없이 행동 복원으로 skill을 학습하는
+                      설정입니다. w/o Skill에서는 action sequence를 직접 생성합니다.
+                    </p>
+                    <p>
+                      Soft prompt를 제거하는 경우 성공률이 4.8%p 낮아졌으며, V-L alignment와
+                      skill을 제거한 설정에서는 각각 18.4%p, 20.8%p 낮아졌습니다.
+                      이 실험에서는 skill 표현과 멀티모달 정렬을 함께 사용하는 설정이
+                      가장 높은 성공률을 보였습니다.
+                    </p>
+                  </div>
+                  <div
+                    role="region"
+                    aria-labelledby="ablation-results-heading"
+                    tabIndex={0}
+                    className="min-w-0 w-full overflow-x-auto rounded-sm border border-border"
+                  >
+                    <table className="w-full min-w-[480px] text-left text-sm leading-6">
+                      <thead className="border-b border-border bg-surface text-muted">
+                        <tr>
+                          <th scope="col" lang="en" className="px-4 py-3 font-medium">Setting</th>
+                          <th scope="col" lang="en" className="px-4 py-3 text-right font-medium">Success Rate</th>
+                          <th scope="col" className="px-4 py-3 text-right font-medium">Ours 대비</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-border">
+                        {ablationResults.map((result, index) => (
+                          <tr
+                            key={result.setting}
+                            className={index === 0 ? "bg-surface font-semibold text-accent" : undefined}
+                          >
+                            <th
+                              scope="row"
+                              lang="en"
+                              className={`px-4 py-3 ${index === 0 ? "font-semibold" : "font-normal"}`}
+                            >
+                              {result.setting}
+                            </th>
+                            <td className="px-4 py-3 text-right tabular-nums">
+                              {result.successRate.toFixed(1)}%
+                            </td>
+                            <td className="px-4 py-3 text-right whitespace-nowrap tabular-nums">
+                              {index === 0
+                                ? "—"
+                                : `−${(ablationResults[0].successRate - result.successRate).toFixed(1)}%p`}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-3 pt-3">
+                <h4 lang="en" className="text-base font-semibold">
+                  t-SNE Analysis
+                </h4>
+                <p>
+                  V-L Align을 적용한 모델과 이를 제거한 모델의 표현 분포를
+                  t-SNE로 비교하였습니다. Ours에서는 skill과 V-L feature가
+                  같은 영역에 함께 분포하는 양상을 보였으며, w/o V-L Align에서는
+                  두 표현이 분리되어 나타났습니다. 이를 통해
+                  skill embedding에 시각·언어의 semantic 정보가 반영되는 경향을
+                  정성적으로 확인하였습니다.
+                </p>
+              </div>
+              <ResearchImage
+                src={multimodalSkillTsne}
+                alt="Ours에서는 Skill과 V-L feature가 함께 분포하고, w/o V-L Align에서는 두 표현이 상대적으로 분리되는 t-SNE 비교"
+              />
+
+              <div className="space-y-3 pt-3">
+                <h4 lang="en" className="text-base font-semibold">
+                  Role of Soft Prompt
+                </h4>
+                <div className="grid items-start gap-6 md:grid-cols-2">
+                  <p>
+                    “Put both moka pots on the stove”라는 전체 작업 지시 아래에서,
+                    현재 수행하는 동작이 가까운 moka pot을 집는 상황의 attention을
+                    비교하였습니다. Soft prompt를 사용하는 모델은 현재 조작 대상에
+                    더 집중하는 양상을 보였으며, 제거한 설정은 전체 작업과 관련된
+                    영역에 주의를 분산하는 양상을 보였습니다. 이를 통해 현재 skill의
+                    문맥을 반영하는 soft prompt의 역할을 정성적으로 살펴보았습니다.
+                  </p>
+                  <ResearchImage
+                    src={multimodalSkillHeatmap}
+                    alt="가까운 moka pot을 집는 상황에서 현재 조작 대상에 집중하는 Ours와 주의가 분산되는 w/o Soft Prompt의 attention heatmap 비교"
+                    sizes={halfWidthImageSizes}
+                  />
+                </div>
+              </div>
+            </ResearchSection>
+          </section>
+        )}
       </article>
     </main>
   );
