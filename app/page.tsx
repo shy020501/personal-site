@@ -13,14 +13,14 @@ const experience = [
   {
     period: "2025.09 – Present",
     organization: "CSI Lab",
-    href: "https://sites.google.com/view/yskim525/home",
+    href: "https://sites.google.com/view/csi-skku",
     role: "석사과정 연구원",
     affiliation: "Sungkyunkwan University",
   },
   {
     period: "2022.11 – 2025.09",
     organization: "CSI Lab",
-    href: "https://sites.google.com/view/yskim525/home",
+    href: "https://sites.google.com/view/csi-skku",
     role: "학부연구생",
     affiliation: "Sungkyunkwan University",
   },
@@ -152,7 +152,7 @@ export default function Home() {
           </p>
           <p className="mt-2 text-sm leading-6 text-muted">
             <a
-              href="https://sites.google.com/view/yskim525/home"
+              href="https://sites.google.com/view/csi-skku"
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent underline decoration-accent/30 underline-offset-4 transition-colors duration-150 hover:decoration-accent motion-reduce:transition-none"
