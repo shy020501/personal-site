@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CardCarousel } from "@/components/card-carousel";
 import { ContentCard } from "@/components/content-card";
 import { PublicationList } from "@/components/publication-list";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
-import { caseStudies } from "@/content/case-studies";
+import { getVisibleCaseStudies } from "@/content/case-studies";
 import { publications } from "@/content/publications";
-import { getHomeProjects } from "@/content/projects";
+import { getVisibleProjects } from "@/content/projects";
 import profilePhoto from "@/public/images/profile.jpg";
 
 const experience = [
@@ -108,7 +109,8 @@ const scholarships = [
 ];
 
 export default function Home() {
-  const projects = getHomeProjects();
+  const projects = getVisibleProjects();
+  const caseStudies = getVisibleCaseStudies();
 
   return (
     <main className="site-container">
@@ -184,11 +186,11 @@ export default function Home() {
           title="Projects"
           action={{ label: "View all projects", href: "/projects" }}
         />
-        <div className="grid auto-rows-fr gap-5 md:grid-cols-3">
+        <CardCarousel label="Projects" columns={3}>
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
-        </div>
+        </CardCarousel>
       </section>
 
       <section
@@ -213,7 +215,7 @@ export default function Home() {
           description="외부 연구와 산업 사례를 공부한 기술·산업 분석 노트입니다."
           action={{ label: "View all case studies", href: "/case-studies" }}
         />
-        <div className="grid gap-6 md:grid-cols-2 md:gap-8">
+        <CardCarousel label="Case Studies" columns={2}>
           {caseStudies.map((study) => (
             <ContentCard
               key={study.slug}
@@ -224,7 +226,7 @@ export default function Home() {
               cta="Read Case Study"
             />
           ))}
-        </div>
+        </CardCarousel>
       </section>
 
       <section

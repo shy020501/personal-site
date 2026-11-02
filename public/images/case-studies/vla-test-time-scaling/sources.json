@@ -1,0 +1,227 @@
+{
+  "retrieved": "2026-10-31",
+  "scope": "The 13 papers listed in the TTS worksheet; the unrelated SEAL link is corrected to the authors robotics paper.",
+  "assets": [
+    {
+      "path": "/images/case-studies/vla-test-time-scaling/v-gps-method.png",
+      "source_url": "https://arxiv.org/pdf/2410.13816v2",
+      "pdf_page": 1,
+      "figure": 1,
+      "crop_rect_points": [
+        107.62,
+        478.99,
+        398.65,
+        194.78
+      ],
+      "render_dpi": 240,
+      "width": 1329,
+      "height": 649,
+      "sha256": "7a5d7e9c10a89d3b212f6097bb754cd8c1f006ac70daad677ea172303fa5e8eb",
+      "modification": "Original PDF figure cropped without redrawing or changing labels."
+    },
+    {
+      "path": "/images/case-studies/vla-test-time-scaling/robomonkey-method.png",
+      "source_url": "https://arxiv.org/pdf/2506.17811v2",
+      "pdf_page": 4,
+      "figure": 2,
+      "crop_rect_points": [
+        108.38,
+        101.56,
+        397.14,
+        172.8
+      ],
+      "render_dpi": 240,
+      "width": 1324,
+      "height": 576,
+      "sha256": "ba2c4fdee145af6a49aa2b5b6ef29e6d628f50dc32db76aacd1e8c71ac6d4de9",
+      "modification": "Original PDF figure cropped without redrawing or changing labels."
+    },
+    {
+      "path": "/images/case-studies/vla-test-time-scaling/mg-select-method.png",
+      "source_url": "https://arxiv.org/pdf/2510.05681v2",
+      "pdf_page": 2,
+      "figure": 1,
+      "crop_rect_points": [
+        131.87,
+        61.39,
+        356.21,
+        150.82
+      ],
+      "render_dpi": 240,
+      "width": 1187,
+      "height": 503,
+      "sha256": "b91e6f5387a4df0c490f9b0e637795da741fc1c1ced9c706fac6bbbf247a3b78",
+      "modification": "Original PDF figure cropped without redrawing or changing labels."
+    },
+    {
+      "path": "/images/case-studies/vla-test-time-scaling/cover-vla-method.png",
+      "source_url": "https://arxiv.org/pdf/2602.12281v2",
+      "pdf_page": 2,
+      "figure": 2,
+      "crop_rect_points": [
+        57.6,
+        70.48,
+        333.47,
+        135.66
+      ],
+      "render_dpi": 240,
+      "width": 1112,
+      "height": 452,
+      "sha256": "6d07fcf2ac79308e0465b356e7ffa42213cecfe778136bd36adf5c2b0f89254a",
+      "modification": "Original PDF figure cropped without redrawing or changing labels. Left and center method panels only; performance chart omitted."
+    },
+    {
+      "path": "/images/case-studies/vla-test-time-scaling/tapsampling-method.png",
+      "source_url": "https://arxiv.org/pdf/2605.25547v1",
+      "pdf_page": 3,
+      "figure": 2,
+      "crop_rect_points": [
+        54.57,
+        66.69,
+        488.84,
+        242.53
+      ],
+      "render_dpi": 240,
+      "width": 1629,
+      "height": 808,
+      "sha256": "e129910d91bb9dc239609587e66fc774fff034911862b2bb1bf6dbcbffd02fd8",
+      "modification": "Original PDF figure cropped without redrawing or changing labels."
+    },
+    {
+      "path": "/images/case-studies/vla-test-time-scaling/seal-robotics-method.png",
+      "source_url": "https://yilin-wu98.github.io/steering-reasoning-vla/static/pdfs/paper_icra.pdf",
+      "pdf_page": 1,
+      "figure": 1,
+      "crop_rect_points": [
+        52.29,
+        144.76,
+        505.52,
+        156.13
+      ],
+      "render_dpi": 240,
+      "width": 1685,
+      "height": 520,
+      "sha256": "b30637ad69e3bf91b661f62f238af447e7f6708dc4fbbb255a969dd96bd13bd9",
+      "modification": "Original PDF figure cropped without redrawing or changing labels."
+    },
+    {
+      "path": "/images/case-studies/vla-test-time-scaling/sitcom-method.png",
+      "source_url": "https://arxiv.org/pdf/2510.04041v1",
+      "pdf_page": 2,
+      "figure": 1,
+      "crop_rect_points": [
+        117.47,
+        71.24,
+        391.07,
+        114.44
+      ],
+      "render_dpi": 240,
+      "width": 1304,
+      "height": 381,
+      "sha256": "5c36310746d7464eb8ac43444d99668582244c994f78328dc2e9e2ff1955a464",
+      "modification": "Original PDF figure cropped without redrawing or changing labels."
+    },
+    {
+      "path": "/images/case-studies/vla-test-time-scaling/sva-method.png",
+      "source_url": "https://arxiv.org/pdf/2607.03751v2",
+      "pdf_page": 5,
+      "figure": 3,
+      "crop_rect_points": [
+        125.05,
+        70.48,
+        360.76,
+        169.01
+      ],
+      "render_dpi": 240,
+      "width": 1203,
+      "height": 563,
+      "sha256": "6535189c6f83e6b32eb9ceca58beaf88a91330d01154a21cdd959ad104689c12",
+      "modification": "Original PDF figure cropped without redrawing or changing labels."
+    },
+    {
+      "path": "/images/case-studies/vla-test-time-scaling/e-tts-method.png",
+      "source_url": "https://arxiv.org/pdf/2606.27268v1",
+      "pdf_page": 5,
+      "figure": 2,
+      "crop_rect_points": [
+        133.39,
+        306.19,
+        347.12,
+        145.52
+      ],
+      "render_dpi": 240,
+      "width": 1157,
+      "height": 485,
+      "sha256": "92f6b4e289cc0c40582719bb33643cf026eaf068d2add30df94362d33ab3695b",
+      "modification": "Original PDF figure cropped without redrawing or changing labels."
+    },
+    {
+      "path": "/images/case-studies/vla-test-time-scaling/dasip-method.png",
+      "source_url": "https://arxiv.org/pdf/2511.20906v2",
+      "pdf_page": 2,
+      "figure": 2,
+      "crop_rect_points": [
+        106.86,
+        329.68,
+        398.65,
+        126.57
+      ],
+      "render_dpi": 240,
+      "width": 1329,
+      "height": 422,
+      "sha256": "3b75b254124e74ffcc31ab672210e152c622c376ad3daef2ad4f9d8be8f7ca68",
+      "modification": "Original PDF figure cropped without redrawing or changing labels."
+    },
+    {
+      "path": "/images/case-studies/vla-test-time-scaling/scale-method.png",
+      "source_url": "https://arxiv.org/pdf/2602.04208v3",
+      "pdf_page": 3,
+      "figure": 2,
+      "crop_rect_points": [
+        53.05,
+        64.42,
+        490.36,
+        184.93
+      ],
+      "render_dpi": 240,
+      "width": 1635,
+      "height": 616,
+      "sha256": "3376853e03ea7f9cebf818437955c9e5d80ae07ee1a778ead9ce0dcb207bc7a9",
+      "modification": "Original PDF figure cropped without redrawing or changing labels."
+    },
+    {
+      "path": "/images/case-studies/vla-test-time-scaling/vla-attc-method.png",
+      "source_url": "https://arxiv.org/pdf/2605.01194v2",
+      "pdf_page": 4,
+      "figure": 3,
+      "crop_rect_points": [
+        53.81,
+        64.42,
+        488.84,
+        119.75
+      ],
+      "render_dpi": 240,
+      "width": 1629,
+      "height": 399,
+      "sha256": "c9d528ec4def386003222699e78b5df7bb02cbf004609d21c3e5acc48455a4ca",
+      "modification": "Original PDF figure cropped without redrawing or changing labels."
+    },
+    {
+      "path": "/images/case-studies/vla-test-time-scaling/elastic-method.png",
+      "source_url": "https://arxiv.org/pdf/2606.31132v1",
+      "pdf_page": 2,
+      "figure": 1,
+      "crop_rect_points": [
+        125.81,
+        68.97,
+        360.76,
+        165.22
+      ],
+      "render_dpi": 240,
+      "width": 1203,
+      "height": 551,
+      "sha256": "ebb9f4ef894819988e823a5378faa89a546df4aab3a25a86ab0122e31da62174",
+      "modification": "Original PDF figure cropped without redrawing or changing labels."
+    }
+  ]
+}

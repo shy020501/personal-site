@@ -16,7 +16,7 @@ import { CollectedDataSection } from "./collected-data-section";
 import { HilSystemDiagram } from "./hil-system-diagram";
 
 const subtitle =
-  "실제 로봇 실험을 위한 로봇 시스템 통합, HIL 환경 구축, F/T 센서 기반 실시간 모니터링 및 멀티모달 데이터 수집 시스템을 개발했습니다.";
+  "실제 로봇 실험을 위한 로봇 시스템 통합, HIL 환경 구축, F/T 센서 기반 실시간 모니터링 및 데이터 수집 시스템을 개발했습니다.";
 
 const platforms = [
   {
@@ -63,7 +63,6 @@ const platforms = [
 ];
 
 const galleryCaptions = ["실험 환경", "시스템 통합", "로봇 실험 데모"];
-const toolPlaceholders = ["Tool 01", "Tool 02", "Tool 03", "Tool 04"];
 
 function getProject() {
   const project = getVisibleProjects().find(
@@ -416,7 +415,15 @@ export default function RealWorldRobotSystemsPage() {
                   Policy &amp; Human Intervention
                 </h3>
                 <p>
-                  Policy action과 Dual SpaceMouse 기반 human intervention을
+                  <a
+                    href="https://hil-serl.github.io/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent"
+                  >
+                    HIL-SERL
+                  </a>
+                  을 참고하여 policy action과 Dual SpaceMouse 기반 human intervention을
                   중재하는 Human-in-the-Loop (HIL) wrapper를 구현하였습니다. 작업자
                   입력 유무에 따라 매 step에서 실행할 action을 선택합니다.
                 </p>
@@ -428,6 +435,13 @@ export default function RealWorldRobotSystemsPage() {
                   실행 중에는 human intervention이 발생한 action과 버튼·회전 잠금
                   상태를 함께 기록하여, 작업자의 개입과 조작 과정을 확인할 수
                   있도록 하였습니다.
+                </p>
+                <p>
+                  HIL-SERL의 buffer 구성을 따라, expert demonstration과 human
+                  intervention 데이터를 저장하는 demo buffer와 online policy
+                  rollout 및 human intervention 데이터를 저장하는 RL buffer로
+                  구성하였습니다. 다만, gripper action을 위한 별도의 DQN critic은
+                  구현하지 않았습니다.
                 </p>
               </div>
 
@@ -446,6 +460,7 @@ export default function RealWorldRobotSystemsPage() {
                   않도록 입력 크기에 임계값을 적용하였습니다. 또한, gripper의 개폐
                   동작 delay를 고려하여 버튼 입력에 0.5초의 최소 간격을 설정하고,
                   개폐 명령이 짧은 시간에 반복 전달되지 않도록 하였습니다.
+                  (현재는 gripper delay가 발생하지 않아 비활성화해 두었습니다.)
                 </p>
                 <p>
                   SpaceMouse 회전 입력 시 TCP 중심 회전으로 인해 그리퍼 끝단의
@@ -482,27 +497,6 @@ export default function RealWorldRobotSystemsPage() {
               </figure>
             ))}
           </div>
-        </section>
-
-        <section aria-labelledby="tools-heading" className="pt-10 sm:pt-12">
-          <SectionHeading id="tools-heading" title="Tools" />
-          <p className="text-sm leading-7 text-muted">
-            사용한 도구와 기술 스택을 추가할 예정입니다.
-          </p>
-          <ul
-            lang="en"
-            aria-label="Tools to be added"
-            className="mt-4 flex flex-wrap gap-2"
-          >
-            {toolPlaceholders.map((tool) => (
-              <li
-                key={tool}
-                className="rounded-sm border border-border px-3 py-1.5 text-xs text-muted"
-              >
-                {tool}
-              </li>
-            ))}
-          </ul>
         </section>
       </article>
     </main>

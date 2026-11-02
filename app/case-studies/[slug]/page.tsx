@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { caseStudies } from "@/content/case-studies";
+import { getVisibleCaseStudies } from "@/content/case-studies";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return caseStudies.map((study) => ({ slug: study.slug }));
+  return getVisibleCaseStudies()
+    .filter(
+      (study) =>
+        study.slug !== "amazon-robotics" &&
+        study.slug !== "pi-series" &&
+        study.slug !== "vla-test-time-scaling",
+    )
+    .map((study) => ({ slug: study.slug }));
 }
 
 function getCaseStudy(slug: string) {
-  const study = caseStudies.find((study) => study.slug === slug);
+  const study = getVisibleCaseStudies().find((study) => study.slug === slug);
 
   if (!study) {
     notFound();

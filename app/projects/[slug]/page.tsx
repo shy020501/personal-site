@@ -12,7 +12,8 @@ export function generateStaticParams() {
         project.slug !== "real-world-robot-systems" &&
         project.slug !== "open-domain" &&
         project.slug !== "drone-anomaly-detection" &&
-        project.slug !== "so-arm",
+        project.slug !== "so-arm" &&
+        project.slug !== "physical-ai",
     )
     .map((project) => ({ slug: project.slug }));
 }

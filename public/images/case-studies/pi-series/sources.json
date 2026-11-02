@@ -1,0 +1,156 @@
+{
+  "publisher": "Physical Intelligence / respective paper authors",
+  "retrievedAt": "2026-10-31",
+  "assets": [
+    {
+      "path": "/images/case-studies/pi-series/pi0-architecture.png",
+      "sourceUrl": "https://www.pi.website/download/pi0.pdf",
+      "sourcePage": 4,
+      "sourceFigure": "3",
+      "sourceCropPoints": [
+        43.2,
+        46.8,
+        568.8,
+        200.88
+      ],
+      "renderDpi": 240,
+      "modifications": "Cropped the original paper figure; no redrawing or added labels",
+      "sha256": "5dd21892c8d9be21ee20658582e18132eecfd771bc3b9be2efb5109f30ab1e76"
+    },
+    {
+      "path": "/images/case-studies/pi-series/fast-tokenizer.png",
+      "sourceUrl": "https://arxiv.org/pdf/2501.09747",
+      "sourcePage": 5,
+      "sourceFigure": "4",
+      "sourceCropPoints": [
+        50.4,
+        56.16,
+        561.6,
+        239.76
+      ],
+      "renderDpi": 240,
+      "modifications": "Cropped the original paper figure; no redrawing or added labels",
+      "sha256": "f9f82d10fdbcf69fc8022fff9499b74426930eb3935ec592e1366fce3d6269b1"
+    },
+    {
+      "path": "/images/case-studies/pi-series/pi05-architecture.png",
+      "sourceUrl": "https://www.pi.website/download/pi05.pdf",
+      "sourcePage": 4,
+      "sourceFigure": "3",
+      "sourceCropPoints": [
+        48.24,
+        56.16,
+        561.6,
+        267.12
+      ],
+      "renderDpi": 240,
+      "modifications": "Cropped the original paper figure; no redrawing or added labels",
+      "sha256": "4e0921d0075d8b61e68c7aaac819773325b7e81edf9ee2695eb60e09a004d438"
+    },
+    {
+      "path": "/images/case-studies/pi-series/knowledge-insulation.png",
+      "sourceUrl": "https://www.pi.website/download/pi05_KI.pdf",
+      "sourcePage": 2,
+      "sourceFigure": "1",
+      "sourceCropPoints": [
+        104.4,
+        64.8,
+        507.6,
+        183.6
+      ],
+      "renderDpi": 240,
+      "modifications": "Cropped the original paper figure; no redrawing or added labels",
+      "sha256": "d09a64fcc4eb1203216c7ebaa4b3704913ffc95a049b19adc8a3e05a234fc5ac"
+    },
+    {
+      "path": "/images/case-studies/pi-series/pi06-architecture.png",
+      "sourceUrl": "https://website.pi-asset.com/pi06star/PI06_model_card.pdf",
+      "sourcePage": 2,
+      "sourceFigure": "1",
+      "sourceCropPoints": [
+        90.0,
+        64.8,
+        518.4,
+        231.12
+      ],
+      "renderDpi": 240,
+      "modifications": "Cropped the original paper figure; no redrawing or added labels",
+      "sha256": "48d6145a492c218143aa833cf9e36803fcf7614a36c180425498754dd5b37c90"
+    },
+    {
+      "path": "/images/case-studies/pi-series/pistar06-architecture.png",
+      "sourceUrl": "https://www.pi.website/download/pistar06.pdf",
+      "sourcePage": 4,
+      "sourceFigure": "3",
+      "sourceCropPoints": [
+        309.6,
+        50.4,
+        564.48,
+        255.6
+      ],
+      "renderDpi": 240,
+      "modifications": "Cropped the original paper figure; no redrawing or added labels",
+      "sha256": "f3110faccf417475f81bcb53827dfb712dcbc72304bd0fefcf4287384a3b6683"
+    },
+    {
+      "path": "/images/case-studies/pi-series/pi07-architecture.png",
+      "sourceUrl": "https://www.pi.website/download/pi07.pdf",
+      "sourcePage": 4,
+      "sourceFigure": "2",
+      "sourceCropPoints": [
+        50.4,
+        57.6,
+        561.6,
+        306.0
+      ],
+      "renderDpi": 240,
+      "modifications": "Cropped the original paper figure; no redrawing or added labels",
+      "sha256": "190d97a4ab23af4aa9bd7aa15da7ded6ad78d827d4ea97bc1c7f0dd290187fb3"
+    },
+    {
+      "path": "/images/case-studies/pi-series/pi06-mem-architecture.png",
+      "sourceUrl": "https://www.pi.website/download/Mem.pdf",
+      "sourcePage": 4,
+      "sourceFigure": "2",
+      "sourceCropPoints": [
+        56.16,
+        51.84,
+        563.76,
+        198.0
+      ],
+      "renderDpi": 240,
+      "modifications": "Cropped the original paper figure; no redrawing or added labels",
+      "sha256": "ab41eb1a76f57e49cb8572f65b871ea4fdbcc84acb9c7cd3bcf0f3b5b64bccea"
+    },
+    {
+      "path": "/images/case-studies/pi-series/pi06-rlt-overview.png",
+      "sourceUrl": "https://www.pi.website/download/rlt.pdf",
+      "sourcePage": 1,
+      "sourceFigure": "1",
+      "sourceCropPoints": [
+        51.84,
+        200.16,
+        562.32,
+        344.88
+      ],
+      "renderDpi": 240,
+      "modifications": "Cropped the original paper figure; no redrawing or added labels",
+      "sha256": "aab9ae310aec78491babc946cb5d8aa6376a60481f7a423b976603d363839716"
+    },
+    {
+      "path": "/images/case-studies/pi-series/pi06-rlt-token.png",
+      "sourceUrl": "https://www.pi.website/download/rlt.pdf",
+      "sourcePage": 4,
+      "sourceFigure": "2",
+      "sourceCropPoints": [
+        47.52,
+        53.28,
+        305.28,
+        295.92
+      ],
+      "renderDpi": 240,
+      "modifications": "Cropped the original paper figure; no redrawing or added labels",
+      "sha256": "fbf93d2c0aa4b17ec15abb483bba29422fca17bc817c056a237d7e4166ea9446"
+    }
+  ]
+}

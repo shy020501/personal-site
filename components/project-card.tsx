@@ -33,7 +33,9 @@ export function ProjectCard({
               className={
                 project.coverImage.fit === "contain"
                   ? "bg-white object-contain object-center"
-                  : "object-cover object-center"
+                  : project.coverImage.fit === "fill"
+                    ? "object-fill object-center"
+                    : "object-cover object-center"
               }
             />
           ) : (

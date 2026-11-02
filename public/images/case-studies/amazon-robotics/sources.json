@@ -1,0 +1,32 @@
+{
+  "sourcePage": "https://www.amazon.science/blog/how-amazons-vulcan-robots-use-touch-to-plan-and-execute-motions",
+  "publisher": "Amazon Science",
+  "publishedAt": "2025-05-09",
+  "retrievedAt": "2026-10-31",
+  "credit": "Amazon / Amazon Science",
+  "assets": [
+    {
+      "path": "/images/case-studies/amazon-robotics/vulcan-segmentation.png",
+      "sourceUrl": "https://cdn.amazon.science/81/bb/bd7fa32d4ab88252a5a86348328f/segment-classification.png",
+      "originalTitle": "Segment classification.png",
+      "modifications": "None"
+    },
+    {
+      "path": "/images/case-studies/amazon-robotics/vulcan-grasp-candidates.png",
+      "sourceUrl": "https://cdn.amazon.science/94/5e/f7fe2e9d41188dd5f11605921cbb/pick-pose-representation.png",
+      "originalTitle": "Pick pose representation.png",
+      "modifications": "None"
+    },
+    {
+      "path": "/videos/case-studies/amazon-robotics/vulcan-demo.mp4",
+      "sourceUrl": "https://cdn.amazon.science/63/a1/11c0cb344796b167aede1791ae93/vulcan-hp-v2.mp4",
+      "originalTitle": "Vulcan Stow",
+      "modifications": "None; original silent video, approximately 8.27 seconds"
+    },
+    {
+      "path": "/images/case-studies/amazon-robotics/vulcan-demo-poster.jpg",
+      "derivedFrom": "/videos/case-studies/amazon-robotics/vulcan-demo.mp4",
+      "modifications": "Frame captured at 2 seconds for the video poster"
+    }
+  ]
+}

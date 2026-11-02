@@ -65,6 +65,19 @@
   .text-link:hover {
     text-decoration-color: currentColor;
   }
+
+  @media (hover: hover) and (pointer: fine) {
+    .carousel-arrow {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .card-carousel:hover .carousel-arrow:not(:disabled),
+    .card-carousel:has(:focus-visible) .carousel-arrow:not(:disabled) {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

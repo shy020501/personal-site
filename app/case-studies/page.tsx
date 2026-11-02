@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ContentCard } from "@/components/content-card";
-import { caseStudies } from "@/content/case-studies";
+import { getVisibleCaseStudies } from "@/content/case-studies";
 
 export const metadata: Metadata = {
   title: "Case Studies | Seunghyo Yun",
@@ -8,6 +8,8 @@ export const metadata: Metadata = {
 };
 
 export default function CaseStudiesPage() {
+  const caseStudies = getVisibleCaseStudies();
+
   return (
     <main className="site-container py-12 sm:py-16">
       <header className="mb-8">
